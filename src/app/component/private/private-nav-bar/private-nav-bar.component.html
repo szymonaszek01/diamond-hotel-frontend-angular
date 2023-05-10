@@ -1,0 +1,21 @@
+<nav>
+  <ul>
+    <div class="flex flow-row space-between">
+      <li class="menu">
+        <div class="logotype">
+          <a href="/private/user/dashboard-page"><img src="/assets/images/logotype.png" alt="logotype"></a>
+        </div>
+        <a routerLink="/private/user/dashboard-page" class="menu-item">{{this.email}}</a>
+      </li>
+      <li class="burger" (click)="toggleMenu()">
+        <a>&#9776;</a>
+      </li>
+      <li class="menu" [class.is-open]="isMenuOpen">
+        <a routerLink="/private/user/dashboard-page" class="menu-item">Home</a>
+        <a routerLink="/private/user/dashboard-page" class="menu-item">Service</a>
+        <a routerLink="/private/user/dashboard-page" class="menu-item">Reservation</a>
+        <a class="menu-item emphasis" (click)="this.signOut()">Sign out</a>
+      </li>
+    </div>
+  </ul>
+</nav>

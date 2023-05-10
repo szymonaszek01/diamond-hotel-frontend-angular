@@ -12,6 +12,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {httpInterceptorProviders} from "./interceptor/AuthInterceptor";
+import {PrivateNavBarComponent} from "./component/private/private-nav-bar/private-nav-bar.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {httpInterceptorProviders} from "./interceptor/AuthInterceptor";
     CommonFooterComponent,
     PublicNavBarComponent,
     PublicAnimatedBackgroundComponent,
-    HomePageComponent
+    HomePageComponent,
+    PrivateNavBarComponent,
   ],
   imports: [
     BrowserModule,
