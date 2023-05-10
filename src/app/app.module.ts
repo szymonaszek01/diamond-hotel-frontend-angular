@@ -15,6 +15,7 @@ import {httpInterceptorProviders} from "./interceptor/AuthInterceptor";
 import {PrivateNavBarComponent} from "./component/private/private-nav-bar/private-nav-bar.component";
 import {UserDashboardPageComponent} from "./page/private/user/user-dashboard-page/user-dashboard-page.component";
 import {SignupPageComponent} from "./page/public/signup-page/signup-page/signup-page.component";
+import {LoginPageComponent} from "./page/public/login-page/login-page.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {SignupPageComponent} from "./page/public/signup-page/signup-page/signup-
     HomePageComponent,
     PrivateNavBarComponent,
     UserDashboardPageComponent,
-    SignupPageComponent
+    SignupPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

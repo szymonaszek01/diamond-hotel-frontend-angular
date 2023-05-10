@@ -1,0 +1,31 @@
+<app-public-nav-bar></app-public-nav-bar>
+<app-public-animated-background>
+  <div class="container">
+    <form name="login-form" class="auth-form flex flow-col">
+      <div class="title">
+        <h4>Sign in</h4>
+      </div>
+      <div *ngIf="!this.errorDto.result" class="flex flow-col error-message">
+        <img id="error" src="assets/icons/x-mark.png" alt="x-mark">
+        <h4>{{this.errorDto.message}}</h4>
+      </div>
+      <div class="flex flow-row">
+        <input [(ngModel)]="this.loginRequestDto.email" name="email" id="email" (input)="toggleUsernameIconVisibility()"
+               autocomplete="username" placeholder="email"
+               type="email" [ngClass]="{'error': !this.errorDto.result}" required>
+        <img id="username" *ngIf="this.isUsernameIconHidden" src="assets/icons/username.png" alt="username">
+      </div>
+      <div class="flex flow-row">
+        <input [(ngModel)]="this.loginRequestDto.password" name="password" id="password"
+               (input)="togglePadlockIconVisibility()" autocomplete="current-password"
+               placeholder="password" [ngClass]="{'error': !this.errorDto.result}" type="password" required>
+        <img id="padlock" *ngIf="this.isPadlockIconHidden" src="assets/icons/padlock.png" alt="padlock">
+      </div>
+      <button type="submit" (click)="login()" class="btn btn-primary">
+        sign in
+      </button>
+      <h4 class="space-top">Not a member?<a routerLink="/signup-page"> Sign up</a></h4>
+    </form>
+  </div>
+</app-public-animated-background>
+<app-common-footer></app-common-footer>
