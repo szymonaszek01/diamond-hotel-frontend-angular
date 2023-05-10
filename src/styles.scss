@@ -1,1 +1,295 @@
-/* You can add global styles to this file, and also import other style files */
+// COLOR
+$color_transparent: transparent;
+$color_white: #FFFFFF;
+$color_error: #de0a0a;
+$color_yellow_600: #988e66;
+$color_yellow_400: #C7BE99;
+$color_yellow_200: rgb(199, 190, 153);
+$color_yellow_100: rgb(246, 241, 224);
+$color_black_400: #363636;
+$color_black_200: #737373;
+$color_black_100: rgba(210, 210, 210, 0.78);
+
+// COMOPONENT'S HEIGHT
+$menu_height: 50px;
+
+// BREAKPOINTS
+$breakpoint_first: 768px;
+$breakpoint_second: 380px;
+$breakpoint_third: 180px;
+
+// FONT
+$font_family: 'Lato', sans-serif;
+
+// GLOBAL STYLES
+* {
+  font-family: $font_family;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+body {
+  background-color: $color_white;
+  color: $color_black_400;
+  padding: 0;
+  margin: 0;
+
+  &::-webkit-scrollbar {
+    width: 0.7vw;
+    background-color: $color_yellow_100;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color_yellow_100;
+    border-style: solid;
+    border-color: $color_yellow_400;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $color_yellow_400;
+  }
+}
+
+h1 {
+  font-size: 8vh;
+  text-transform: uppercase;
+  font-weight: bold;
+  vertical-align: bottom;
+  letter-spacing: 0.2rem;
+}
+
+h2 {
+  font-size: 2vh;
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+a {
+  text-decoration: none;
+  color: $color_black_400;
+}
+
+.flex {
+  position: relative;
+  display: flex;
+  margin: 0 1.5vw;
+  align-items: center;
+}
+
+.flow-col {
+  flex-flow: column wrap;
+}
+
+.flow-row {
+  flex-flow: row wrap;
+}
+
+.space-top {
+  margin: 1.5vh 0;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.space-gap {
+  gap: 1.5rem;
+}
+
+.btn {
+  cursor: pointer;
+  border: 0.1rem solid;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: 0.6rem;
+  font-weight: normal;
+  border-radius: 0.8rem;
+  outline: none;
+
+  transition-duration: .2s;
+  -webkit-transition-duration: .2s;
+  -moz-transition-duration: .2s;
+  background-color: $color_transparent;
+}
+
+.btn-primary {
+  color: $color_black_400;
+  border: 0.1rem solid $color_black_400;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: $color_yellow_100;
+  transition-duration: .2s;
+  -webkit-transition-duration: .11s;
+  -moz-transition-duration: .2s;
+}
+
+.btn-secondary {
+  color: $color_black_400;
+  border: 0.1rem solid $color_black_400;
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  background-color: $color_black_400;
+  color: $color_yellow_100;
+  transition-duration: .2s;
+  -webkit-transition-duration: .11s;
+  -moz-transition-duration: .2s;
+}
+
+input {
+  position: relative;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.1rem solid $color_black_400;
+  background: $color_transparent;
+  padding: 0.7rem;
+  text-transform: uppercase;
+  font-size: 1.5vh;
+  color: $color_black_400;
+  width: 15rem;
+  letter-spacing: 0.1rem;
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  font-size: 1.5vh;
+}
+
+input::placeholder {
+  color: $color_black_400;
+  letter-spacing: 0.1rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.error {
+  border-bottom: 0.1rem solid $color_error;
+  color: $color_error;
+  animation: shake 0.2s ease-in-out 0s 2;
+}
+
+.auth-form {
+  color: $color_yellow_600;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  width: 23rem;
+  height: 100%;
+  background: linear-gradient(10deg, $color_yellow_600 0%, $color_yellow_100 100%);
+  border-radius: 1.5rem;
+  border-style: solid;
+  border-color: $color_black_400;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    margin-top: 2.5vh;
+  }
+
+  input {
+    margin-top: 2.5vh;
+  }
+
+  img {
+    position: relative;
+    width: 0.7rem;
+    height: auto;
+  }
+
+  .flow-row {
+    img {
+      width: 0.8rem;
+      height: auto;
+      position: absolute;
+      right: 0.7rem;
+      bottom: 0.7rem;
+    }
+  }
+
+  h4 {
+    margin-top: 2.5vh;
+    font-size: 1.5vh;
+    color: $color_black_400;
+    padding: 0;
+  }
+
+  a {
+    color: $color_yellow_100;
+  }
+
+  .error-message {
+    border: none;
+
+    img {
+      width: 2rem;
+      height: auto;
+    }
+
+    h4 {
+      text-align: center;
+      color: $color_error;
+    }
+  }
+
+  .title {
+    text-align: center;
+
+    h4 {
+      font-size: 2rem;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: $breakpoint_second) {
+    & {
+      width: 90vw;
+    }
+
+    input {
+      width: 70vw;
+    }
+  }
+}
+
+@keyframes shake {
+  0% { margin-left: 0; }
+  25% { margin-left: 0.5rem; }
+  75% { margin-left: -0.5rem; }
+  100% { margin-left: 0; }
+}
+
+@media (max-width: $breakpoint_first) {
+  h1 {
+    font-size: 4vh;
+  }
+
+  h2 {
+    font-size: 2.5vh;
+  }
+}
+
+@media (max-width: $breakpoint_third) {
+  .btn {
+    padding: 0.3rem;
+    font-size: 0.4rem;
+    border-radius: 0.4rem;
+  }
+
+  h1 {
+    font-size: 2vh;
+  }
+
+  h2 {
+    font-size: 1vh;
+  }
+}
