@@ -13,6 +13,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {httpInterceptorProviders} from "./interceptor/AuthInterceptor";
 import {PrivateNavBarComponent} from "./component/private/private-nav-bar/private-nav-bar.component";
+import {UserDashboardPageComponent} from "./page/private/user/user-dashboard-page/user-dashboard-page.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {PrivateNavBarComponent} from "./component/private/private-nav-bar/privat
     PublicAnimatedBackgroundComponent,
     HomePageComponent,
     PrivateNavBarComponent,
+    UserDashboardPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,71 @@
+@import "src/styles";
+
+.container {
+  background: linear-gradient(60deg, $color_yellow_200 0%, $color_yellow_100 100%);
+
+  .colour-block {
+    background: transparent;
+    height: 100%;
+    display: flex;
+    color: $color_black_400;
+
+    h1 {
+      font-size: 5vh;
+    }
+
+    .flow-row {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .flow-col#content {
+      width: 55vw;
+    }
+
+    img {
+      width: 33vw;
+      height: auto;
+    }
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  h2 {
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .skew-cc {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    left: 0;
+    background: linear-gradient(to left bottom, $color_transparent 50%, $color_black_400 51%);
+    outline: none;
+    transition: all 0.5s ease;
+  }
+
+  .skew-cc:hover {
+    height: 120px;
+  }
+
+  .btn {
+    width: 6rem;
+    height: auto;
+  }
+
+  .skew-c {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    left: 0;
+    background: linear-gradient(to left bottom, $color_black_400 49%, $color_transparent 50%);
+    transition: all 0.5s ease;
+  }
+
+  .skew-c:hover {
+    height: 120px;
+  }
+}
