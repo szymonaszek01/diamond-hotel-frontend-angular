@@ -1,0 +1,78 @@
+@import "src/styles";
+
+nav {
+  ul {
+    list-style: none;
+    margin: 0 0;
+    padding: 0;
+    background: linear-gradient(60deg, $color_yellow_200 0%, $color_yellow_100 100%);
+    box-shadow: 0 1px $color_yellow_400;
+
+    @media (max-width: $breakpoint_first) {
+      box-shadow: none;
+
+      img {
+        margin: 0.8rem 0;
+      }
+    }
+  }
+
+  .logotype {
+    width: 35px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .burger {
+    display: none;
+    cursor: pointer;
+    font-size: 25px;
+
+    @media (max-width: $breakpoint_first) {
+      display: block;
+    }
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    @media (max-width: $breakpoint_first) {
+      display: none;
+
+      &.is-open {
+        display: block;
+        position: relative;
+        background: $color_transparent;
+        width: 100%;
+        z-index: 1;
+
+        .menu-item {
+          border-bottom: 1px solid $color_white;
+        }
+
+        .emphasis {
+          color: $color_white;
+        }
+      }
+    }
+
+    .menu-item {
+      height: $menu_height;
+      line-height: $menu_height;
+      text-decoration: none;
+      display: block;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: $color_black_400;
+    }
+
+    .emphasis {
+      color: $color_yellow_600;
+    }
+  }
+}
