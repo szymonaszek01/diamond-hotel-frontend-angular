@@ -11,7 +11,7 @@ import {RegisterRequestDto} from '../dto/RegisterRequestDto';
 
 export class UserProfileService {
 
-  private url = 'http://localhost:5432/api/v1/user-profile';
+  private url = 'https://diamond-hotel-backend.onrender.com/api/v1/user-profile';
 
   constructor(private http: HttpClient) {
   }
