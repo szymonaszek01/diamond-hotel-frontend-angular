@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {UserProfileDetailsResponseDto} from '../dto/UserProfileDetailsResponseDto';
 import {HttpClient} from '@angular/common/http';
 import {RegisterRequestDto} from '../dto/RegisterRequestDto';
+import {UserProfile} from "../model/UserProfile";
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,28 @@ export class UserProfileService {
   constructor(private http: HttpClient) {
   }
 
-  login(loginRequestDto: LoginRequestDto): Observable<UserProfileDetailsResponseDto> {
+  public login(loginRequestDto: LoginRequestDto): Observable<UserProfileDetailsResponseDto> {
     return this.http.post<UserProfileDetailsResponseDto>(this.url + '/login', loginRequestDto);
   }
 
-  register(registerRequestDto: RegisterRequestDto): Observable<UserProfileDetailsResponseDto> {
+  public register(registerRequestDto: RegisterRequestDto): Observable<UserProfileDetailsResponseDto> {
     return this.http.post<UserProfileDetailsResponseDto>(this.url + '/register', registerRequestDto);
   }
 
+  public toUserProfileMapper(response: UserProfileDetailsResponseDto): UserProfile {
+    return {
+      id: response.user_profile.id,
+      email: response.user_profile.email,
+      firstname: response.user_profile.firstname,
+      lastname: response.user_profile.lastname,
+      age: response.user_profile.age,
+      country: response.user_profile.country,
+      passportNumber: response.user_profile.passport_number,
+      phoneNumber: response.user_profile.phone_number,
+      city: response.user_profile.city,
+      street: response.user_profile.street,
+      postalCode: response.user_profile.postal_code,
+      role: response.user_profile.role
+    };
+  }
 }

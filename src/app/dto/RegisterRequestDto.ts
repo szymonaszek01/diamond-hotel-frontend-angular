@@ -3,7 +3,7 @@ export interface RegisterRequestDto {
 
   password: string;
 
-  repeatedPassword: string;
+  repeated_password: string;
 
   firstname: string;
 
@@ -13,13 +13,13 @@ export interface RegisterRequestDto {
 
   country: string;
 
-  passportNumber: string;
+  passport_number: string;
 
-  phoneNumber: string;
+  phone_number: string;
 
   city: string;
 
   street: string;
 
-  postalCode: string;
+  postal_code: string;
 }

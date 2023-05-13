@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {UserProfileDetailsResponseDto} from '../dto/UserProfileDetailsResponseDto';
 import {ErrorDto} from '../dto/ErrorDto';
+import {UserProfile} from "../model/UserProfile";
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,18 @@ export class AuthService {
   constructor() {
   }
 
-  public saveUserProfileDetailsResponseDtoInSessionStorage(loginResponseDto: UserProfileDetailsResponseDto): void {
-    console.log('jwt: ' + loginResponseDto.jwt);
-    sessionStorage.setItem('jwt', loginResponseDto.jwt);
+  public saveUserProfileDetailsResponseDtoInSessionStorage(jwt: string, userProfile: UserProfile): void {
+    console.log('jwt: ' + jwt);
+    sessionStorage.setItem('jwt', jwt);
 
-    Object.entries(loginResponseDto.userProfile).forEach(([key, value]) => {
+    Object.entries(userProfile).forEach(([key, value]) => {
       console.log(key + ': ' + value);
       sessionStorage.setItem(key, value);
     });
+  }
+
+  public getItem(key: string) {
+    return sessionStorage.getItem(key);
   }
 
   public logout(): void {

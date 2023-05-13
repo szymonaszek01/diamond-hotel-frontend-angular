@@ -13,7 +13,7 @@ export class UserReservationNewStepFirstPageComponent {
   }
 
   ngOnInit(): void {
-    const token = sessionStorage.getItem('jwt');
+    const token = this.authService.getItem('jwt');
     if (!token || this.authService.isTokenExpired(token)) {
       this.authService.logout();
       this.router.navigateByUrl('login-page');

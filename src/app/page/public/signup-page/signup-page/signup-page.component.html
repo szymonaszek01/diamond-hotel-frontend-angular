@@ -22,7 +22,7 @@
         <img id="padlock" *ngIf="this.isNewPasswordPadlockIconHidden" src="assets/icons/padlock.png" alt="padlock">
       </div>
       <div class="flex flow-row">
-        <input *ngIf="this.step === 0" [(ngModel)]="this.registerRequestDto.repeatedPassword" name="repeated-new-password" id="repeated-new-password"
+        <input *ngIf="this.step === 0" [(ngModel)]="this.registerRequestDto.repeated_password" name="repeated-new-password" id="repeated-new-password"
                (input)="toggleRepeatedNewPasswordPadlockIconVisibility()" autocomplete="new-password"
                placeholder="repeated password" [ngClass]="{'error': !this.errorDto.result}" type="password" required>
         <img id="repeated-padlock" *ngIf="this.isRepeatedNewPasswordPadlockIconHidden" src="assets/icons/padlock.png" alt="padlock">
@@ -44,11 +44,11 @@
                (input)="errorDto.result = true" placeholder="Country" type="text" [ngClass]="{'error': !this.errorDto.result}" required>
       </div>
       <div class="flex flow-row">
-        <input *ngIf="this.step === 2" [(ngModel)]="this.registerRequestDto.passportNumber" name="passport-number" id="passport-number"
+        <input *ngIf="this.step === 2" [(ngModel)]="this.registerRequestDto.passport_number" name="passport-number" id="passport-number"
                (input)="errorDto.result = true" placeholder="Passport number" type="text" [ngClass]="{'error': !this.errorDto.result}" required>
       </div>
       <div class="flex flow-row">
-        <input *ngIf="this.step === 2" [(ngModel)]="this.registerRequestDto.phoneNumber" name="phone-number" id="phone-number"
+        <input *ngIf="this.step === 2" [(ngModel)]="this.registerRequestDto.phone_number" name="phone-number" id="phone-number"
                (input)="errorDto.result = true" placeholder="Phone number" type="tel" [ngClass]="{'error': !this.errorDto.result}" required>
       </div>
       <div class="flex flow-row">
@@ -60,7 +60,7 @@
                (input)="errorDto.result = true" placeholder="Street" type="text" [ngClass]="{'error': !this.errorDto.result}" required>
       </div>
       <div class="flex flow-row">
-        <input *ngIf="this.step === 3" [(ngModel)]="this.registerRequestDto.postalCode" name="postal-code" id="postal-code"
+        <input *ngIf="this.step === 3" [(ngModel)]="this.registerRequestDto.postal_code" name="postal-code" id="postal-code"
                (input)="errorDto.result = true" placeholder="Postal code" type="text" [ngClass]="{'error': !this.errorDto.result}" required>
       </div>
       <div class="flex flow-row space-gap">

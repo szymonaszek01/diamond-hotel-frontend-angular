@@ -2,11 +2,13 @@
 
 .container {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   letter-spacing: 0.2rem;
   text-align: center;
   padding: 20vh;
   text-transform: uppercase;
+  align-items: center;
 
   h1 {
     display: contents;

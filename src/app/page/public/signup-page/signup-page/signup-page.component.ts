@@ -91,13 +91,13 @@ export class SignupPageComponent implements OnInit {
   }
 
   private stepZero(): void {
-    if (!this.registerRequestDto.email || !this.registerRequestDto.password || !this.registerRequestDto.repeatedPassword) {
+    if (!this.registerRequestDto.email || !this.registerRequestDto.password || !this.registerRequestDto.repeated_password) {
       this.errorDto.result = false;
       this.errorDto.message = 'You must input all values';
       return;
     }
 
-    if (!this.errorDto.result || this.registerRequestDto.password !== this.registerRequestDto.repeatedPassword) {
+    if (!this.errorDto.result || this.registerRequestDto.password !== this.registerRequestDto.repeated_password) {
       this.errorDto.result = false;
       this.errorDto.message = 'Password is not equaled repeated password';
       return;
@@ -124,7 +124,7 @@ export class SignupPageComponent implements OnInit {
   }
 
   private stepTwo(): void {
-    if (!this.registerRequestDto.country || !this.registerRequestDto.passportNumber || !this.registerRequestDto.phoneNumber) {
+    if (!this.registerRequestDto.country || !this.registerRequestDto.passport_number || !this.registerRequestDto.phone_number) {
       this.errorDto.result = false;
       this.errorDto.message = 'You must input all values';
       return;
@@ -136,7 +136,7 @@ export class SignupPageComponent implements OnInit {
   }
 
   public register() {
-    if (!this.registerRequestDto.city || !this.registerRequestDto.street || !this.registerRequestDto.postalCode) {
+    if (!this.registerRequestDto.city || !this.registerRequestDto.street || !this.registerRequestDto.postal_code) {
       this.errorDto.result = false;
       this.errorDto.message = 'You must input all values';
       return;
@@ -154,7 +154,7 @@ export class SignupPageComponent implements OnInit {
 
   private onResponse(response: UserProfileDetailsResponseDto): void {
     this.errorDto.result = true;
-    this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response);
+    this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response.jwt, this.userProfileService.toUserProfileMapper(response));
     this.router.navigateByUrl('private/user/dashboard-page');
   }
 }

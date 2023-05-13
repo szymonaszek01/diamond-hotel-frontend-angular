@@ -24,7 +24,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = sessionStorage.getItem('jwt');
+    const token = this.authService.getItem('jwt');
     if (token) {
       if (this.authService.isTokenExpired(token)) {
         this.authService.logout();
@@ -61,7 +61,7 @@ export class LoginPageComponent implements OnInit {
 
   private onResponse(response: UserProfileDetailsResponseDto): void {
     this.errorDto.result = true;
-    this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response);
+    this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response.jwt, this.userProfileService.toUserProfileMapper(response));
     this.router.navigateByUrl('private/user/dashboard-page');
   }
 }
