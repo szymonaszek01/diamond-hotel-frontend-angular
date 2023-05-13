@@ -1,7 +1,21 @@
 @import "src/styles";
 
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
 .container {
   background: linear-gradient(60deg, $color_yellow_200 0%, $color_yellow_100 100%);
+
+  img#background {
+    height: 100vh;
+    right: 0;
+    width: auto;
+    z-index: 1;
+    position: absolute;
+  }
 
   .colour-block {
     background: transparent;
@@ -9,35 +23,18 @@
     display: flex;
     color: $color_black_400;
 
-    h1 {
-      font-size: 5vh;
-    }
-
     .flow-row {
       justify-content: center;
       text-align: center;
     }
 
-    .flow-col#content {
-      width: 55vw;
+    .flow-col {
+      width: 100%;
     }
-
-    img {
-      width: 33vw;
-      height: auto;
-    }
-  }
-
-  h1 {
-    margin: 0;
-  }
-
-  h2 {
-    margin: 0;
-    text-transform: uppercase;
   }
 
   .skew-cc {
+    z-index: 1;
     width: 100%;
     height: 100px;
     position: relative;
@@ -45,15 +42,6 @@
     background: linear-gradient(to left bottom, $color_transparent 50%, $color_black_400 51%);
     outline: none;
     transition: all 0.5s ease;
-  }
-
-  .skew-cc:hover {
-    height: 120px;
-  }
-
-  .btn {
-    width: 6rem;
-    height: auto;
   }
 
   .skew-c {
@@ -64,8 +52,56 @@
     background: linear-gradient(to left bottom, $color_black_400 49%, $color_transparent 50%);
     transition: all 0.5s ease;
   }
+}
 
-  .skew-c:hover {
-    height: 120px;
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: left;
+  & {
+    @media (max-width: $breakpoint_first) {
+      align-items: center;
+      justify-content: center;
+    }
   }
+  gap: 4rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 10vh auto;
+}
+
+strong {
+  font-weight: 600;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    display: flex;
+    align-items: center;
+    text-transform: none;
+    gap: .5rem;
+
+    & + * {
+      margin-top: .75rem;
+    }
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+app-common-card {
+  z-index: 1 !important;
 }

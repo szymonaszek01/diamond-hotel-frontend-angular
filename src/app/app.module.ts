@@ -16,6 +16,7 @@ import {PrivateNavBarComponent} from "./component/private/private-nav-bar/privat
 import {UserDashboardPageComponent} from "./page/private/user/user-dashboard-page/user-dashboard-page.component";
 import {SignupPageComponent} from "./page/public/signup-page/signup-page/signup-page.component";
 import {LoginPageComponent} from "./page/public/login-page/login-page.component";
+import {CommonCardComponentComponent} from './component/common/common-card/common-card-component.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {LoginPageComponent} from "./page/public/login-page/login-page.component"
     PrivateNavBarComponent,
     UserDashboardPageComponent,
     SignupPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    CommonCardComponentComponent
   ],
   imports: [
     BrowserModule,

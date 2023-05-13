@@ -1,0 +1,17 @@
+<article class="card">
+  <div class="title-container">
+    <h2 class="title"><strong>{{this.title}}</strong></h2>
+  </div>
+  <div class="body-container">
+    <ng-content select=".body-container"></ng-content>
+  </div>
+  <div class="button-container">
+    <button class="btn btn-secondary" (click)="this.routerGo()">
+      <span>{{this.button}}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
+        <path d="M0 0h24v24H0V0z" fill="none"/>
+        <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</article>

@@ -1,0 +1,27 @@
+@import "src/styles";
+
+.card {
+  border-radius: 1rem;
+  padding: 1.5rem;
+  height: 45vh;
+
+  max-width: 265px;
+  align-items: start;
+  color: $color_yellow_200;
+  background: $color_black_400;
+
+  .title-container {
+    height: 10%;
+  }
+
+  .body-container {
+    height: 58%;
+  }
+
+  .button-container {
+    display: flex;
+    height: 12%;
+    margin-top: 2rem;
+    justify-content: center;
+  }
+}

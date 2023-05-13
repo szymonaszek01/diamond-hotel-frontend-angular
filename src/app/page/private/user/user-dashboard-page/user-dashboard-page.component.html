@@ -1,14 +1,89 @@
 <div class="container">
   <app-private-nav-bar></app-private-nav-bar>
   <div class="skew-c"></div>
+  <img id="background" src="assets/images/user-home.png" alt="image">
   <div class="colour-block">
-    <div class="flex flow-row">
-      <div class="flex flow-col">
-        <img id="user-home" src="assets/images/user-home.png" alt="user-home">
-      </div>
-      <div id="content" class="flex flow-col">
-        <h1>Reserve a room and make your dreams come true</h1>
-        <button type="button" class="btn btn-primary space-top">Reserve</button>
+    <div class="flow-col">
+      <div class="flow-row">
+        <div class="cards">
+          <app-common-card [title]="'Reservations'" [link]="'#'" [button]="'get started'">
+            <div class="body-container">
+              <p class="info">Keep track of your upcoming stays and manage your reservations with ease.</p>
+              <ul class="features">
+                <li>
+					        <span class="icon">
+						        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+							        <path fill="none" d="M0 0h24v24H0z"/>
+							        <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor"/>
+						        </svg>
+					        </span>
+                  <span>view <strong>all</strong> reservations</span>
+                </li>
+                <li>
+					        <span class="icon">
+						      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+							      <path fill="none" d="M0 0h24v24H0z"/>
+							      <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor"/>
+						      </svg>
+					        </span>
+                  <span>make changes</span>
+                </li>
+                <li>
+					        <span class="icon">
+						      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+							      <path fill="none" d="M0 0h24v24H0z"/>
+							      <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor"/>
+						      </svg>
+					        </span>
+                  <span>cancel if necessary</span>
+                </li>
+              </ul>
+            </div>
+          </app-common-card>
+          <app-common-card [title]="'Service'" [link]="'#'" [button]="'get started'">
+            <div class="body-container">
+              <p>Here, you can easily view and manage all of your booked hotel rooms in one convenient location.</p>
+              <ul class="features">
+                <li>
+					        <span class="icon">
+						        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+							        <path fill="none" d="M0 0h24v24H0z"/>
+							        <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor"/>
+						        </svg>
+					        </span>
+                  <span>update room preferences</span>
+                </li>
+                <li>
+					        <span class="icon">
+						      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+							      <path fill="none" d="M0 0h24v24H0z"/>
+							      <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor"/>
+						      </svg>
+					        </span>
+                  <span>special requests</span>
+                </li>
+                <li>
+					        <span class="icon">
+						      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+							      <path fill="none" d="M0 0h24v24H0z"/>
+							      <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor"/>
+						      </svg>
+					        </span>
+                  <span>exclusive deals</span>
+                </li>
+              </ul>
+            </div>
+            <div class="button-container">
+              <button class="btn btn-secondary">
+                <span>get started</span>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
+                  <path d="M0 0h24v24H0V0z" fill="none"/>
+                  <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z" fill="currentColor"/>
+                </svg>
+              </button>
+            </div>
+          </app-common-card>
+        </div>
       </div>
     </div>
   </div>

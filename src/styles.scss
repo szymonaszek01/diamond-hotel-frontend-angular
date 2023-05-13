@@ -101,6 +101,8 @@ a {
 
 .btn {
   cursor: pointer;
+  display: flex;
+  align-items: center;
   border: 0.1rem solid;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -129,14 +131,14 @@ a {
 }
 
 .btn-secondary {
-  color: $color_black_400;
-  border: 0.1rem solid $color_black_400;
+  color: $color_yellow_200;
+  border: 0.1rem solid $color_yellow_200;
   font-weight: 600;
 }
 
 .btn-secondary:hover {
-  background-color: $color_black_400;
-  color: $color_yellow_100;
+  background-color: $color_yellow_200;
+  color: $color_black_400;
   transition-duration: .2s;
   -webkit-transition-duration: .11s;
   -moz-transition-duration: .2s;
