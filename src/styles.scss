@@ -270,6 +270,26 @@ input::placeholder {
   100% { margin-left: 0; }
 }
 
+.skew-cc {
+  z-index: 1;
+  width: 100%;
+  height: 100px;
+  position: relative;
+  left: 0;
+  background: linear-gradient(to left bottom, $color_transparent 50%, $color_black_400 51%);
+  outline: none;
+  transition: all 0.5s ease;
+}
+
+.skew-c {
+  width: 100%;
+  height: 100px;
+  position: relative;
+  left: 0;
+  background: linear-gradient(to left bottom, $color_black_400 49%, $color_transparent 50%);
+  transition: all 0.5s ease;
+}
+
 @media (max-width: $breakpoint_first) {
   h1 {
     font-size: 4vh;

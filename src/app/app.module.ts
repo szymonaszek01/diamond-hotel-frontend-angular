@@ -20,6 +20,9 @@ import {CommonCardComponentComponent} from './component/common/common-card/commo
 import {
   CommonInputSearchComponentComponent
 } from './component/common/common-input-search/common-input-search-component.component';
+import {
+  UserReservationNewStepFirstPageComponent
+} from './page/private/user/user-reservation-new-step-first-page/user-reservation-new-step-first-page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import {
     SignupPageComponent,
     LoginPageComponent,
     CommonCardComponentComponent,
-    CommonInputSearchComponentComponent
+    CommonInputSearchComponentComponent,
+    UserReservationNewStepFirstPageComponent
   ],
   imports: [
     BrowserModule,
