@@ -17,6 +17,9 @@ import {UserDashboardPageComponent} from "./page/private/user/user-dashboard-pag
 import {SignupPageComponent} from "./page/public/signup-page/signup-page/signup-page.component";
 import {LoginPageComponent} from "./page/public/login-page/login-page.component";
 import {CommonCardComponentComponent} from './component/common/common-card/common-card-component.component';
+import {
+  CommonInputSearchComponentComponent
+} from './component/common/common-input-search/common-input-search-component.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import {CommonCardComponentComponent} from './component/common/common-card/commo
     UserDashboardPageComponent,
     SignupPageComponent,
     LoginPageComponent,
-    CommonCardComponentComponent
+    CommonCardComponentComponent,
+    CommonInputSearchComponentComponent
   ],
   imports: [
     BrowserModule,

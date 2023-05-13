@@ -1,0 +1,4 @@
+<div class="search-container">
+  <input type="search" class="search-field" (input)="changeStateOnInput()" [(ngModel)]="this.inputValue" placeholder="{{this.placeholder}}"/>
+  <img (click)="this.changeStateOnClick()" src="assets/icons/{{this.isIconSearchActive ? 'search' : 'close'}}.png" alt="search"/>
+</div>
