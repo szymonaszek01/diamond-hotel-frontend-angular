@@ -23,6 +23,8 @@ import {
 import {
   UserReservationNewStepFirstPageComponent
 } from './page/private/user/user-reservation-new-step-first-page/user-reservation-new-step-first-page.component';
+import { PrivateSelectComponentComponent } from './component/private/private-select/private-select-component.component';
+import { PrivateRoomTypeCardComponentComponent } from './component/private/private-room-type-card/private-room-type-card-component.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {
     LoginPageComponent,
     CommonCardComponentComponent,
     CommonInputSearchComponentComponent,
-    UserReservationNewStepFirstPageComponent
+    UserReservationNewStepFirstPageComponent,
+    PrivateSelectComponentComponent,
+    PrivateRoomTypeCardComponentComponent
   ],
   imports: [
     BrowserModule,

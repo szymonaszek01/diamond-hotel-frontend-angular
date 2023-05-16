@@ -1,0 +1,14 @@
+<div class="select">
+  <input type="radio" name="option-{{this.id}}">
+  <img src="assets/icons/arrow-down.png" class="toggle image image-arrow-down"/>
+  <img src="assets/icons/arrow-up.png" class="toggle image image-arrow-up"/>
+  <span class="placeholder">{{this.placeholder}}</span>
+  <label class="option">
+    <input type="radio" name="option-{{this.id}}">
+    <span class="title">Any</span>
+  </label>
+  <label class="option" *ngFor="let option of this.option_list">
+    <input id="{{option}}" (click)="this.onOptionSelected($event)" type="radio" name="option-{{this.id}}">
+    <span class="title">{{option}}</span>
+  </label>
+</div>

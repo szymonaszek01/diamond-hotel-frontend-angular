@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="col-left">
+    <div class="col-opinion">
+      <div class="col-number">
+        <strong>{{this.availableRoomType.roomTypeOpinion.rate}}</strong>
+      </div>
+      <div class="col-text">
+        <span><strong>{{this.availableRoomType.roomTypeOpinion.text}}</strong></span>
+        <span>{{this.availableRoomType.roomTypeOpinion.amount}} opinions</span>
+      </div>
+    </div>
+    <div class="col-left-data">
+      <span>Price/day</span>
+      <span><strong>{{this.availableRoomType.roomType.pricePerHotelNight}}€</strong></span>
+    </div>
+    <div class="col-left-data">
+      <span>Available</span>
+      <span><strong>{{this.availableRoomType.available}}</strong></span>
+    </div>
+    <div class="col-add-remove">
+      <button (click)="this.onButtonPlus()"><strong>+</strong></button>
+      <span><strong>{{this.selectedRooms}}</strong></span>
+      <button (click)="this.onButtonMinus()"><strong>-</strong></button>
+    </div>
+  </div>
+  <div class="col-description">
+    <div class="title">
+      <span>{{this.availableRoomType.roomType.name}}</span>
+    </div>
+    <ul class="features">
+      <li *ngFor="let equipment of this.availableRoomType.roomType.equipmentList">
+				<span class="icon">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+						<path fill="none" d="M0 0h24v24H0z"/>
+						<path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor"/>
+					</svg>
+				</span>
+        <span>{{equipment}}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="col-img">
+    <div class="overlay"></div>
+    <img src="{{this.availableRoomType.roomType.image}}">
+  </div>
+</div>
