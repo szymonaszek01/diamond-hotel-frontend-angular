@@ -2,4 +2,125 @@
 
 .container {
   background: linear-gradient(60deg, $color_yellow_200 0%, $color_yellow_100 100%);
+
+  .main {
+    padding: 0 7rem;
+  }
+
+  .flex {
+    align-items: flex-start;
+  }
+
+  .flow-row {
+    justify-content: space-between;
+  }
+
+  .col-small {
+    margin: 0;
+    display: flex;
+    width: 17vw;
+  }
+
+  .col-large {
+    margin: 0;
+    width: 60vw;
+
+    app-private-room-type-card {
+      width: 100%;
+      margin-top: 3rem;
+    }
+  }
+
+  .summary {
+    display: flex;
+    flex-direction: row;
+    padding: 0 1rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: $color_yellow_200;
+    height: 3rem;
+    width: 100%;
+    justify-content: space-between;
+    background: $color_black_400;
+    border-radius: 0.8rem 0.8rem 0.8rem 0;
+    align-items: center;
+
+    .cart {
+      padding: 0;
+
+      img {
+        width: 1.7rem;
+        height: auto;
+        cursor: pointer;
+      }
+
+      span {
+        color: $color_white;
+        position: absolute;
+        background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);
+        padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+        border-radius: 100%;
+        font-size: 0.8rem;
+        outline: none;
+        margin: 0;
+        top: -0.5rem;
+        right: -0.65rem;
+      }
+    }
+  }
+
+  .filter-box {
+    display: flex;
+    top: 0;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0 0 0.8rem 0.8rem;
+    height: 100%;
+    padding: 0 1rem 1rem 1rem;
+    align-items: center;
+    justify-content: center;
+    background: $color_black_400;
+    color: $color_yellow_200;
+
+    button {
+      margin-top: 1.2rem;
+    }
+
+    input + input {
+      margin-top: 1rem;
+    }
+
+    input::placeholder {
+      color: $color_yellow_200;
+    }
+
+    input {
+      padding: 0;
+      color: $color_yellow_200;
+      border-color: $color_yellow_200;
+      width: 100%;
+      height: 2.5rem;
+    }
+
+    input[type="date"] {
+      width: 100%;
+      color: $color_yellow_200;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      display: block;
+      background-image: url("/assets/icons/arrow-down.png");
+      width: 1rem;
+      height: 1rem;
+      cursor: pointer;
+    }
+
+    app-private-select {
+      width: 100%;
+    }
+  }
+}
+
+app-private-select {
+  margin: 1rem 0 0 0;
 }

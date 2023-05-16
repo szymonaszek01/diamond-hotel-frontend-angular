@@ -1,6 +1,34 @@
 <div class="container">
   <app-private-nav-bar></app-private-nav-bar>
-  <div class="skew-c"></div>
-  <div class="skew-cc"></div>
+  <div class="main">
+    <div class="flex flow-row">
+      <div class="summary">
+        <span>Filter panel</span>
+        <div class="cart">
+          <img src="assets/icons/shopping-cart.png" alt="cart">
+          <span>0</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex flow-row">
+      <div class="flex flow-col col-small">
+        <div class="filter-box">
+          <input type="text" placeholder="Check in" onfocus="(this.type='date')"/>
+          <input type="text" placeholder="Check out" onfocus="(this.type='date')"/>
+          <app-private-select [id]="1" [option_list]="this.roomTypeList"
+                              [placeholder]="'Room type'"></app-private-select>
+          <app-private-select [id]="2" [option_list]="this.numberOfPeopleList"
+                              [placeholder]="'Number of people'"></app-private-select>
+          <button class="btn btn-secondary">
+            Search
+          </button>
+        </div>
+      </div>
+      <div class="flex flow-col col-large">
+        <app-private-room-type-card *ngFor="let availableRoomType of this.availableRoomTypeList"
+                                    [availableRoomType]="availableRoomType"></app-private-room-type-card>
+      </div>
+    </div>
+  </div>
+  <app-common-footer></app-common-footer>
 </div>
-<app-common-footer></app-common-footer>
