@@ -59,6 +59,10 @@ strong {
   display: flex;
   flex-direction: column;
 
+  @media (max-width: $breakpoint_first) {
+    padding: 0;
+  }
+
   li {
     display: flex;
     align-items: center;
@@ -84,6 +88,10 @@ strong {
 
 app-common-card {
   z-index: 1 !important;
+
+  @media (max-width: $breakpoint_second) {
+    margin: 0 0.7rem;
+  }
 }
 
 app-common-footer {

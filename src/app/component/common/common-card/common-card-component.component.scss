@@ -3,9 +3,14 @@
 .card {
   border-radius: 1rem;
   padding: 1.5rem;
-  height: 45vh;
-
+  height: 100%;
   max-width: 265px;
+
+  @media (max-width: $breakpoint_second) {
+    width: 80vw;
+    max-width: unset;
+  }
+
   align-items: start;
   color: $color_yellow_200;
   background: $color_black_400;

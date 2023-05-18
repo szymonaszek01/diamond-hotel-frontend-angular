@@ -28,7 +28,7 @@ nav {
   .burger {
     display: none;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 2.2rem;
 
     @media (max-width: $breakpoint_first) {
       display: block;

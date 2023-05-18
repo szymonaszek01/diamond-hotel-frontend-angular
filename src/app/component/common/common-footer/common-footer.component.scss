@@ -2,7 +2,22 @@
 
 .footer-container {
   background: linear-gradient(60deg, $color_yellow_200 0%, $color_yellow_100 100%);
-  padding: 1.5rem 7rem 0 7rem;
+  padding: 1.5rem 7rem;
+
+  @media (max-width: $breakpoint_first) {
+    padding: 0 0.5rem;
+  }
+
+  hr {
+    width: 80vw;
+    color: $color_black_400;
+    border-top: 0.1vh solid $color_black_400;
+    border-bottom: none;
+
+    @media (max-width: 1238px) {
+      width: 100%;
+    }
+  }
 }
 
 .flow-row {
@@ -27,13 +42,6 @@
       text-align: center;
     }
   }
-}
-
-hr {
-  width: 80vw;
-  color: $color_black_400;
-  border-top: 0.1vh solid $color_black_400;
-  border-bottom: none;
 }
 
 .flow-col#about {
