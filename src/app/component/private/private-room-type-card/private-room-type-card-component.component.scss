@@ -7,13 +7,21 @@
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   width: 100%;
-  height: 30vh;
+  height: 100%;
   border-radius: 0 0.8rem 0.8rem 0.8rem;
   background: $color_black_400;
+
+  @media (max-width: 1238px) {
+    flex-flow: wrap;
+  }
 
   .col-left {
     display: flex;
     flex-direction: column;
+
+    @media (max-width: $breakpoint_first) {
+      width: 100%;
+    }
 
     .col-opinion {
       display: flex;
@@ -60,6 +68,13 @@
       color: $color_yellow_200;
       font-size: 0.6rem;
 
+      @media (max-width: $breakpoint_first) {
+        width: 100%;
+        padding: 0.7rem 0;
+        align-items: center;
+        justify-content: center;
+      }
+
       span {
         strong {
           font-size: 0.9rem;
@@ -77,6 +92,13 @@
       font-size: 0.8rem;
       padding: 1.5rem 0 1.5rem 1rem;
       gap: 0.2rem;
+
+      @media (max-width: $breakpoint_first) {
+        width: 100%;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+      }
 
       span {
         border: 0.1rem solid $color_yellow_200;
@@ -104,17 +126,32 @@
     height: 100%;
     align-items: flex-start;
 
+    @media (max-width: $breakpoint_first) {
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
     .title {
       margin-top: 0.6rem;
       display: flex;
       align-items: flex-start;
       height: 3rem;
       font-size: 1.5rem;
+
+      @media (max-width: $breakpoint_first) {
+        margin-top: 2rem;
+        height: 100%;
+      }
     }
 
     .features {
       display: flex;
       flex-direction: column;
+
+      @media (max-width: $breakpoint_first) {
+        padding: 0;
+      }
 
       li {
         display: flex;
@@ -150,18 +187,38 @@
     position: relative;
     justify-content: center;
 
+    @media (max-width: $breakpoint_first) {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      align-items: center;
+      width: 100%;
+    }
+
     .overlay {
       position: absolute;
       background: rgba(0, 0, 0, 0.26);
       width: 100%;
       height: 100%;
       border-radius: 0 0.8rem 0.8rem 0;
+
+      @media (max-width: $breakpoint_first) {
+        width: 0;
+      }
     }
 
     img {
       height: 100%;
       width: auto;
+      max-width: 20rem;
       border-radius: 0 0.8rem 0.8rem 0;
+
+      @media (max-width: 1238px) {
+        width: 100%;
+      }
+
+      @media ($breakpoint_first) {
+        border-radius: 0;
+      }
     }
   }
 }

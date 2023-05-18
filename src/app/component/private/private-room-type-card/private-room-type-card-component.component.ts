@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {AvailableRoomType} from "../../../model/AvailableRoomType";
+import {RoomTypeCardData} from "../../../model/RoomTypeCardData";
 
 @Component({
   selector: 'app-private-room-type-card',
@@ -26,7 +27,10 @@ export class PrivateRoomTypeCardComponentComponent {
     available: 0
   };
 
-  public selectedRooms: number = 0;
+  @Output()
+  public cardChanged = new EventEmitter<RoomTypeCardData>();
+
+  public selectedRoomAmount: number = 0;
 
   constructor() {
   }
@@ -35,12 +39,28 @@ export class PrivateRoomTypeCardComponentComponent {
   }
 
   public onButtonPlus(): void {
-    this.selectedRooms = this.selectedRooms + 1;
+    if (this.availableRoomType.available < 1) {
+      return;
+    }
+
+    this.selectedRoomAmount = this.selectedRoomAmount + 1;
+    this.availableRoomType.available -= 1;
+    this.cardChanged.emit({
+      roomTypeName: this.availableRoomType.roomType.name,
+      amount: 1
+    });
   }
 
   public onButtonMinus(): void {
-    if (this.selectedRooms - 1 >= 0) {
-      this.selectedRooms = this.selectedRooms - 1;
+    if (this.selectedRoomAmount < 1) {
+      return;
     }
+
+    this.selectedRoomAmount = this.selectedRoomAmount - 1;
+    this.availableRoomType.available += 1;
+    this.cardChanged.emit({
+      roomTypeName: this.availableRoomType.roomType.name,
+      amount: -1
+    });
   }
 }
