@@ -1,4 +1,4 @@
-export interface AvailableRoomTypeResponseDto {
+export interface AvailableRoomTypeDto {
   id: number
 
   name: string;
