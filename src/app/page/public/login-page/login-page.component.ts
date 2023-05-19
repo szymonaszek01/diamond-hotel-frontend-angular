@@ -15,9 +15,11 @@ export class LoginPageComponent implements OnInit {
 
   errorDto: ErrorDto = {} as ErrorDto;
 
-  isUsernameIconHidden = true;
+  isUsernameIconHidden: boolean = true;
 
-  isPadlockIconHidden = true;
+  isPadlockIconHidden: boolean = true;
+
+  busy: boolean = false;
 
   constructor(private router: Router, private authService: AuthService, private userProfileService: UserProfileService) {
     this.errorDto.result = true;
@@ -36,12 +38,16 @@ export class LoginPageComponent implements OnInit {
   }
 
   public async login(): Promise<void> {
+    this.busy = true;
+
     this.errorDto = this.authService.isValidPassword(this.loginRequestDto.password);
     if (!this.errorDto.result) {
+      this.busy = false;
       return;
     }
 
     this.userProfileService.login(this.loginRequestDto).subscribe(response => this.onResponse(response), () => {
+      this.busy = false;
       this.errorDto.result = false;
       this.errorDto.message = 'Incorrect email or password';
     });
@@ -60,6 +66,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   private onResponse(response: UserProfileDetailsResponseDto): void {
+    this.busy = false;
     this.errorDto.result = true;
     this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response.jwt, this.userProfileService.toUserProfileMapper(response));
     this.router.navigateByUrl('private/user/dashboard-page');

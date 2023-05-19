@@ -8,6 +8,10 @@
   margin: 0.8vh 0;
 }
 
+input {
+  text-transform: none;
+}
+
 .btn-slider {
   background: $color_transparent;
   cursor: pointer;

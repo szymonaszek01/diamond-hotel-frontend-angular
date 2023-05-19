@@ -15,19 +15,21 @@ export class SignupPageComponent implements OnInit {
 
   errorDto: ErrorDto = {} as ErrorDto;
 
-  isUsernameIconHidden = true;
+  isUsernameIconHidden: boolean = true;
 
-  isNewPasswordPadlockIconHidden = true;
+  isNewPasswordPadlockIconHidden: boolean = true;
 
-  isRepeatedNewPasswordPadlockIconHidden = true;
+  isRepeatedNewPasswordPadlockIconHidden: boolean = true;
 
-  isButtonSubmitVisible = false;
+  isButtonSubmitVisible: boolean = false;
 
-  isButtonPreviousVisible = false;
+  isButtonPreviousVisible: boolean = false;
 
-  isButtonNextVisible = true;
+  isButtonNextVisible: boolean = true;
 
-  step = 0;
+  step: number = 0;
+
+  busy: boolean = false;
 
   constructor(private router: Router, private authService: AuthService, private userProfileService: UserProfileService) {
     this.errorDto.result = true;
@@ -136,7 +138,10 @@ export class SignupPageComponent implements OnInit {
   }
 
   public register() {
+    this.busy = true;
+
     if (!this.registerRequestDto.city || !this.registerRequestDto.street || !this.registerRequestDto.postal_code) {
+      this.busy = false;
       this.errorDto.result = false;
       this.errorDto.message = 'You must input all values';
       return;
@@ -144,6 +149,7 @@ export class SignupPageComponent implements OnInit {
 
     this.isButtonSubmitVisible = false;
     this.userProfileService.register(this.registerRequestDto).subscribe(response => this.onResponse(response), () => {
+      this.busy = false;
       this.errorDto.result = false;
       this.errorDto.message = 'User with this email or password exists';
       this.step = 0;
@@ -153,6 +159,7 @@ export class SignupPageComponent implements OnInit {
   }
 
   private onResponse(response: UserProfileDetailsResponseDto): void {
+    this.busy = false;
     this.errorDto.result = true;
     this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response.jwt, this.userProfileService.toUserProfileMapper(response));
     this.router.navigateByUrl('private/user/dashboard-page');
