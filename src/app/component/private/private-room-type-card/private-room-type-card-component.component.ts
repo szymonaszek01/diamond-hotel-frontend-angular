@@ -30,7 +30,7 @@ export class PrivateRoomTypeCardComponentComponent {
   @Output()
   public cardChanged = new EventEmitter<RoomTypeCardData>();
 
-  public selectedRoomAmount: number = 0;
+  selectedRoomAmount: number = 0;
 
   constructor() {
   }

@@ -20,15 +20,15 @@ export class UserReservationNewStepFirstPageComponent {
 
   @ViewChild("capacitySelect") capacitySelect: PrivateSelectComponentComponent | undefined;
 
-  public shoppingCart: number = 0;
+  shoppingCart: number = 0;
 
-  public roomTypeList: string[] = [];
+  roomTypeList: string[] = [];
 
-  public numberOfPeopleList: string[] = [];
+  numberOfPeopleList: string[] = [];
 
-  public availableRoomTypeList: AvailableRoomType[] = [];
+  availableRoomTypeList: AvailableRoomType[] = [];
 
-  public busy: boolean = false;
+  busy: boolean = false;
 
   public availableRoomTypeListRequestDto: AvailableRoomTypeListRequestDto = {
     check_in: new Date().toISOString(),
