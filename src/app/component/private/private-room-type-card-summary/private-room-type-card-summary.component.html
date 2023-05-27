@@ -1,0 +1,24 @@
+<div class="container">
+  <div id="header" class="flex flow-row">
+    <h2>{{this.roomTypeSummaryInfo.roomTypeCardData.roomTypeName}}</h2>
+    <img src="assets/icons/close.png" alt="close" />
+  </div>
+  <div class="flex flow-row">
+    <div class="flex flow-col">
+      <span>Price/day</span>
+      <span><strong>{{this.roomTypeSummaryInfo.pricePerHotelNight}}€</strong></span>
+    </div>
+    <div class="flex flow-col">
+      <span>Selected rooms</span>
+      <span><strong>{{this.roomTypeSummaryInfo.roomTypeCardData.amount}}</strong></span>
+    </div>
+    <div class="flex flow-col">
+      <span>cost</span>
+      <span><strong>{{this.roomTypeSummaryInfo.selectedRoomsCost}}€</strong></span>
+    </div>
+    <div class="flex flow-col">
+      <span>Capacity</span>
+      <span><strong>{{this.roomTypeSummaryInfo.capacity}}</strong></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+@import "src/styles";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: $color_black_400;
+  width: 100%;
+  border-radius: 0 0.8rem 0.8rem 0.8rem;
+  color: $color_yellow_200;
+
+  img {
+    height: 1.1rem;
+    width: auto;
+    cursor: pointer;
+  }
+
+  .flow-row {
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    justify-content: space-between;
+
+    @media (max-width: $breakpoint_first) {
+      flex-flow: nowrap;
+      flex-direction: column;
+    }
+
+    &#header {
+      align-items: center;
+      flex-direction: row;
+
+      h2 {
+        font-size: 1rem;
+        margin-bottom: 1.8rem;
+      }
+    }
+
+    .flow-col {
+      padding: 0;
+      margin: 0;
+
+      @media (max-width: $breakpoint_first) {
+        width: 100%;
+      }
+    }
+
+    span {
+      font-size: 0.6rem;
+      strong {
+        font-size: 0.8rem;
+      }
+    }
+
+    &:last-child {
+      margin: 0 0 0.8rem 0;
+    }
+
+    gap: 1.5rem;
+    width: 97%;
+  }
+
+  input {
+    width: 100%;
+    color: $color_yellow_200;
+    border-bottom: 0.1rem solid $color_yellow_200;
+    top: 0.9rem;
+    padding: 0 0 0.78rem 0;
+  }
+
+  input::placeholder {
+    color: $color_yellow_200;
+  }
+}

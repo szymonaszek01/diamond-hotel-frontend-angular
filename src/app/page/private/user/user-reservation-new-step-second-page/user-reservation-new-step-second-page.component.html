@@ -1,0 +1,84 @@
+<div class="container">
+  <app-common-loading-data-window [message]="'loading'" [visibility]="this.busy"></app-common-loading-data-window>
+  <app-private-nav-bar></app-private-nav-bar>
+  <div class="main">
+    <div id="summary" class="flex flow-row">
+      <div class="summary">
+        <span>Summary</span>
+        <div class="cart">
+          <img src="assets/icons/shopping-cart.png" alt="cart">
+          <span id="shopping-cart">{{this.shoppingCart.toString()}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex flow-row">
+      <div class="flex flow-col col-small">
+        <div class="filter-box">
+          <div class="flex flow-row cost-summary">
+            <div class="flex flow-col">
+              <span class="date-color">Check in</span>
+              <span class="date-color">Check out</span>
+              <span>Cost</span>
+              <span>Tax</span>
+              <span>Car pickup</span>
+              <span>Car rent</span>
+            </div>
+            <div class="flex flow-col align-right">
+              <span class="date-color">{{this.getDateFromISO(this.shoppingCartModel.checkIn)}}</span>
+              <span class="date-color">{{this.getDateFromISO(this.shoppingCartModel.checkOut)}}</span>
+              <span>{{this.shoppingCartModel.totalWithoutTax}}€</span>
+              <span>{{this.shoppingCartModel.tax}}€</span>
+              <span>{{this.shoppingCartModel.carPickUpCost}}€</span>
+              <span>{{this.shoppingCartModel.carRentCost}}€</span>
+            </div>
+          </div>
+          <div id="total" class="flex flow-row cost-summary">
+            <div class="flex flow-col">
+              <span><strong>Total</strong></span>
+            </div>
+            <div class="flex flow-col align-right">
+              <span><strong>{{this.getTotalCost()}}€</strong></span>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <button class="btn btn-secondary">
+              Pay
+            </button>
+            <button class="btn btn-secondary" (click)="this.routerGoToRoomSelection()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="flex flow-col col-large">
+        <div class="additional-data-card">
+          <div class="flex flow-row">
+            <h2>FLight</h2>
+          </div>
+          <div class="flex flow-row">
+            <app-private-select (selectChanged)="this.onCarPickUpSelectChanged($event)" [id]="1" [option_list]="['Yes', 'No']"
+                                [placeholder]="'Car pick up'"></app-private-select>
+            <input (input)="this.onInputChanged()" *ngIf="this.carPickUpSelectedValue == 'Yes'" [(ngModel)]="this.flightNumber" type="text"
+                   placeholder="Flight number"/>
+          </div>
+        </div>
+        <div class="additional-data-card">
+          <div class="flex flow-row">
+            <h2>Car</h2>
+          </div>
+          <div class="flex flow-row">
+            <app-private-select (selectChanged)="this.onCarRentSelectChanged($event)" [id]="2" [option_list]="['Yes', 'No']"
+                                [placeholder]="'Car rent'"></app-private-select>
+            <input (input)="this.onInputChanged()" *ngIf="this.carRentSelectedValue == 'Yes'" [(ngModel)]="this.carRentDuration"
+                   type="text" placeholder="Number of days"/>
+          </div>
+        </div>
+        <app-private-room-type-card-summary
+          *ngFor="let roomTypeSummaryInfo of this.shoppingCartModel.roomTypeSummaryInfo"
+          [roomTypeSummaryInfo]="roomTypeSummaryInfo"></app-private-room-type-card-summary>
+      </div>
+    </div>
+  </div>
+  <app-common-footer></app-common-footer>
+</div>

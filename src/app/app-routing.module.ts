@@ -7,6 +7,9 @@ import {LoginPageComponent} from "./page/public/login-page/login-page.component"
 import {
   UserReservationNewStepFirstPageComponent
 } from "./page/private/user/user-reservation-new-step-first-page/user-reservation-new-step-first-page.component";
+import {
+  UserReservationNewStepSecondPageComponent
+} from "./page/private/user/user-reservation-new-step-second-page/user-reservation-new-step-second-page.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home-page', pathMatch: 'full'},
@@ -14,7 +17,8 @@ const routes: Routes = [
   {path: 'signup-page', component: SignupPageComponent},
   {path: 'login-page', component: LoginPageComponent},
   {path: 'private/user/dashboard-page', component: UserDashboardPageComponent},
-  {path: 'private/user/reservation/new/step/first', component: UserReservationNewStepFirstPageComponent}
+  {path: 'private/user/reservation/new/step/first', component: UserReservationNewStepFirstPageComponent},
+  {path: 'private/user/reservation/new/step/second', component: UserReservationNewStepSecondPageComponent}
 ];
 
 @NgModule({
