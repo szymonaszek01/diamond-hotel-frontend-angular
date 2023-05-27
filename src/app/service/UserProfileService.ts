@@ -13,10 +13,10 @@ import {UserProfile} from "../model/auth/UserProfile";
 export class UserProfileService {
 
   // URL_PRODUCTION
-  // private url = 'https://diamond-hotel-backend.onrender.com/api/v1/user-profile';
+  private url = 'https://diamond-hotel-backend.onrender.com/api/v1/user-profile';
 
   // URL_LOCALHOST
-  private url = 'http://localhost:5432/api/v1/user-profile';
+  // private url = 'http://localhost:5432/api/v1/user-profile';
 
   constructor(private http: HttpClient) {
   }

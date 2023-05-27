@@ -20,10 +20,10 @@ import {CostDto} from "../dto/shopping-cart/CostDto";
 export class RoomTypeService {
 
   // URL_PRODUCTION
-  // private url = 'https://diamond-hotel-backend.onrender.com/api/v1/room-type';
+  private url = 'https://diamond-hotel-backend.onrender.com/api/v1/room-type';
 
   // URL_LOCALHOST
-  private url = 'http://localhost:5432/api/v1/room-type';
+  // private url = 'http://localhost:5432/api/v1/room-type';
 
   constructor(private http: HttpClient) {
   }
