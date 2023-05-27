@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {ErrorDto} from '../dto/ErrorDto';
-import {UserProfile} from "../model/UserProfile";
+import {ErrorDto} from '../dto/error/ErrorDto';
+import {UserProfile} from "../model/auth/UserProfile";
+import {ShoppingCartModel} from "../model/shopping-cart/ShoppingCartModel";
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,16 @@ export class AuthService {
     });
   }
 
+  public saveShoppingCartDetailsResponseDtoInSessionStorage(response: ShoppingCartModel) {
+    sessionStorage.setItem('shoppingCartModel', JSON.stringify(response));
+  }
+
   public getItem(key: string) {
     return sessionStorage.getItem(key);
+  }
+
+  public removeItem(key: string) {
+    sessionStorage.removeItem(key);
   }
 
   public logout(): void {

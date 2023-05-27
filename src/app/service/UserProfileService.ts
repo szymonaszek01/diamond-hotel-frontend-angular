@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {LoginRequestDto} from '../dto/LoginRequestDto';
+import {LoginRequestDto} from '../dto/auth/LoginRequestDto';
 import {Observable} from 'rxjs';
-import {UserProfileDetailsResponseDto} from '../dto/UserProfileDetailsResponseDto';
+import {UserProfileDetailsResponseDto} from '../dto/auth/UserProfileDetailsResponseDto';
 import {HttpClient} from '@angular/common/http';
-import {RegisterRequestDto} from '../dto/RegisterRequestDto';
-import {UserProfile} from "../model/UserProfile";
+import {RegisterRequestDto} from '../dto/auth/RegisterRequestDto';
+import {UserProfile} from "../model/auth/UserProfile";
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,10 @@ import {UserProfile} from "../model/UserProfile";
 export class UserProfileService {
 
   // URL_PRODUCTION
-  private url = 'https://diamond-hotel-backend.onrender.com/api/v1/user-profile';
+  // private url = 'https://diamond-hotel-backend.onrender.com/api/v1/user-profile';
 
   // URL_LOCALHOST
-  // private url = 'http://localhost:5432/api/v1/user-profile';
+  private url = 'http://localhost:5432/api/v1/user-profile';
 
   constructor(private http: HttpClient) {
   }
