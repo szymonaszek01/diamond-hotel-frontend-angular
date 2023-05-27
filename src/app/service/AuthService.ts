@@ -22,7 +22,13 @@ export class AuthService {
   }
 
   public saveShoppingCartDetailsResponseDtoInSessionStorage(response: ShoppingCartModel) {
+    console.log(response);
     sessionStorage.setItem('shoppingCartModel', JSON.stringify(response));
+  }
+
+  public saveStripeTokenInSessionStorage(response: string) {
+    console.log(response);
+    sessionStorage.setItem('stripeToken', response);
   }
 
   public getItem(key: string) {

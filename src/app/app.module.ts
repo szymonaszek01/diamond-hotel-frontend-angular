@@ -23,12 +23,20 @@ import {
 import {
   UserReservationNewStepFirstPageComponent
 } from './page/private/user/user-reservation-new-step-first-page/user-reservation-new-step-first-page.component';
-import { PrivateSelectComponentComponent } from './component/private/private-select/private-select-component.component';
-import { PrivateRoomTypeCardComponentComponent } from './component/private/private-room-type-card/private-room-type-card-component.component';
-import { CommonToastComponentComponent } from './component/common/common-toast/common-toast-component.component';
-import { CommonLoadingDataWindowComponnetComponent } from './component/common/common-loading-data-window/common-loading-data-window-componnet.component';
-import { UserReservationNewStepSecondPageComponent } from './page/private/user/user-reservation-new-step-second-page/user-reservation-new-step-second-page.component';
-import { PrivateRoomTypeCardSummaryComponent } from './component/private/private-room-type-card-summary/private-room-type-card-summary.component';
+import {PrivateSelectComponentComponent} from './component/private/private-select/private-select-component.component';
+import {
+  PrivateRoomTypeCardComponentComponent
+} from './component/private/private-room-type-card/private-room-type-card-component.component';
+import {CommonToastComponentComponent} from './component/common/common-toast/common-toast-component.component';
+import {
+  CommonLoadingDataWindowComponnetComponent
+} from './component/common/common-loading-data-window/common-loading-data-window-componnet.component';
+import {
+  UserReservationNewStepSecondPageComponent
+} from './page/private/user/user-reservation-new-step-second-page/user-reservation-new-step-second-page.component';
+import {
+  PrivateRoomTypeCardSummaryComponent
+} from './component/private/private-room-type-card-summary/private-room-type-card-summary.component';
 
 @NgModule({
   declarations: [

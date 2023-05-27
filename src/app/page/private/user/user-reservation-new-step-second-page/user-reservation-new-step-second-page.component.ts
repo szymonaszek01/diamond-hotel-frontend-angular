@@ -8,6 +8,7 @@ import {
 } from "../../../../component/private/private-select/private-select-component.component";
 import {RoomTypeCardData} from "../../../../model/room-type/RoomTypeCardData";
 import {CarDto} from "../../../../dto/shopping-cart/CarDto";
+import {PaymentService} from "../../../../service/PaymentService";
 
 @Component({
   selector: 'app-user-reservation-new-step-second-page',
@@ -30,7 +31,8 @@ export class UserReservationNewStepSecondPageComponent {
 
   carRentDuration: string = '';
 
-  constructor(private router: Router, private authService: AuthService, private roomTypeService: RoomTypeService) {
+  constructor(private router: Router, private authService: AuthService, private roomTypeService: RoomTypeService,
+              private paymentService: PaymentService) {
     window.addEventListener('popstate', this.handlePopState);
   }
 
@@ -95,6 +97,15 @@ export class UserReservationNewStepSecondPageComponent {
   public routerGoToRoomSelection(): void {
     this.authService.removeItem('shoppingCartModel');
     this.router.navigateByUrl('/private/user/reservation/new/step/first');
+  }
+
+  public initializePayment(): void {
+    const costAll: number = this.shoppingCartModel.totalWithoutTax + this.shoppingCartModel.tax +
+      this.shoppingCartModel.carPickUpCost + this.shoppingCartModel.carRentCost;
+    this.paymentService.initializePayment('Diamond Hotel', 'Reservation', costAll).subscribe(response => {
+      this.authService.saveStripeTokenInSessionStorage(response);
+      this.router.navigateByUrl('/private/user/reservation/new/step/second');
+    });
   }
 
   private async getShoppingCartSummaryCostWithCar() {
