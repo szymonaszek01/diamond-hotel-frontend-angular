@@ -5,7 +5,6 @@
   <span class="placeholder">{{this.placeholder}}</span>
   <label class="option">
     <input type="radio" name="option-{{this.id}}">
-    <span class="title">Any</span>
   </label>
   <label class="option" *ngFor="let option of this.option_list">
     <input id="{{option}}" (click)="this.onOptionSelected($event)" type="radio" name="option-{{this.id}}">

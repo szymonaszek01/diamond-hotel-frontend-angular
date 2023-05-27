@@ -4,8 +4,8 @@
   <div class="main">
     <div class="flex flow-row">
       <div class="summary">
-        <span>Filter panel</span>
-        <div class="cart">
+        <span>Room type selection</span>
+        <div class="cart" (click)="this.routerGoToShoppingCart()">
           <img src="assets/icons/shopping-cart.png" alt="cart">
           <span id="shopping-cart">{{this.shoppingCart.toString()}}</span>
         </div>
@@ -28,9 +28,9 @@
         </div>
       </div>
       <div class="flex flow-col col-large">
+        <app-common-toast *ngIf="!this.errorDto.result" [message]="this.errorDto.message ?? ''"></app-common-toast>
         <app-private-room-type-card *ngFor="let availableRoomType of this.availableRoomTypeList" (cardChanged)="this.handleShoppingCartChange($event)"
                                     [availableRoomType]="availableRoomType"></app-private-room-type-card>
-        <app-common-toast *ngIf="availableRoomTypeList.length < 1" [message]="'No available rooms found. Please try to change filters.'"></app-common-toast>
       </div>
     </div>
   </div>

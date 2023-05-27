@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginRequestDto} from '../../../dto/LoginRequestDto';
+import {LoginRequestDto} from '../../../dto/auth/LoginRequestDto';
 import {UserProfileService} from '../../../service/UserProfileService';
 import {AuthService} from '../../../service/AuthService';
 import {Router} from '@angular/router';
-import {ErrorDto} from '../../../dto/ErrorDto';
-import {UserProfileDetailsResponseDto} from "../../../dto/UserProfileDetailsResponseDto";
+import {ErrorDto} from '../../../dto/error/ErrorDto';
+import {UserProfileDetailsResponseDto} from "../../../dto/auth/UserProfileDetailsResponseDto";
 
 @Component({
   selector: 'app-login-page', templateUrl: './login-page.component.html', styleUrls: ['./login-page.component.scss']

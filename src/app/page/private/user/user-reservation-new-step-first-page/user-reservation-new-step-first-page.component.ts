@@ -1,13 +1,14 @@
 import {Component, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../../../service/AuthService";
-import {AvailableRoomType} from "../../../../model/AvailableRoomType";
+import {AvailableRoomType} from "../../../../model/room-type/AvailableRoomType";
 import {RoomTypeService} from "../../../../service/RoomTypeService";
-import {AvailableRoomTypeListRequestDto} from "../../../../dto/AvailableRoomTypeListRequestDto";
+import {AvailableRoomTypeListRequestDto} from "../../../../dto/room-type/AvailableRoomTypeListRequestDto";
 import {
   PrivateSelectComponentComponent
 } from "../../../../component/private/private-select/private-select-component.component";
-import {RoomTypeCardData} from "../../../../model/RoomTypeCardData";
+import {RoomTypeCardData} from "../../../../model/room-type/RoomTypeCardData";
+import {ErrorDto} from "../../../../dto/error/ErrorDto";
 
 @Component({
   selector: 'app-user-reservation-new-step-first-page',
@@ -22,13 +23,15 @@ export class UserReservationNewStepFirstPageComponent {
 
   shoppingCart: number = 0;
 
-  roomTypeList: string[] = [];
+  roomTypeList: string[] = ["Any"];
 
   numberOfPeopleList: string[] = [];
 
   availableRoomTypeList: AvailableRoomType[] = [];
 
   busy: boolean = false;
+
+  errorDto: ErrorDto = {} as ErrorDto;
 
   public availableRoomTypeListRequestDto: AvailableRoomTypeListRequestDto = {
     check_in: new Date().toISOString(),
@@ -92,13 +95,19 @@ export class UserReservationNewStepFirstPageComponent {
     this.getAvailableRoomTypeList();
   }
 
+  public routerGoToShoppingCart(): void {
+    this.getShoppingCartSummary();
+  }
+
   private async getRoomTypeConfigurationInfo(): Promise<void> {
     this.busy = true;
     this.roomTypeService.getRoomTypeConfigurationInfo().subscribe(response => {
-      this.roomTypeList = response.room_type_list;
+      response.room_type_list.forEach(room_type => this.roomTypeList.push(room_type));
       this.numberOfPeopleList = response.capacity_list;
+      this.errorDto.result = true;
     }, () => {
-      console.log('Room type configuration info not found')
+      this.errorDto.result = false;
+      this.errorDto.message = 'Room type configuration info not found.';
     });
   }
 
@@ -108,11 +117,40 @@ export class UserReservationNewStepFirstPageComponent {
       this.availableRoomTypeList = response.available_room_type_list.map(availableRoomTypeDto => {
         return this.roomTypeService.toAvailableRoomTypeMapper(availableRoomTypeDto);
       });
+
+      if (this.availableRoomTypeList.length < 1) {
+        this.errorDto.result = false;
+        this.errorDto.message = 'No available rooms found. Please try to change filters.';
+      } else {
+        this.errorDto.result = true;
+      }
       this.busy = false;
     }, () => {
       this.busy = false;
-      console.log('Available room type list not found')
+      this.errorDto.result = false;
+      this.errorDto.message = 'Available room type list not found.';
     });
+  }
+
+  private async getShoppingCartSummary(): Promise<void> {
+    if (this.shoppingCart == 0) {
+      return;
+    }
+
+    this.busy = true;
+    this.roomTypeService.getShoppingCartSummary(this.roomTypeService.toShoppingCartSummaryRequestDtoMapper(
+      this.availableRoomTypeListRequestDto.check_in, this.availableRoomTypeListRequestDto.check_out, this.roomTypeCardDataList, false, false))
+      .subscribe(response => {
+        this.authService.saveShoppingCartDetailsResponseDtoInSessionStorage(this.roomTypeService.toShoppingCartModelMapper(response));
+        this.busy = false;
+        this.errorDto.result = true;
+        this.router.navigateByUrl('/private/user/reservation/new/step/second');
+      }, () => {
+        this.busy = false;
+        this.errorDto.result = false;
+        this.errorDto.message = 'Available room type list has changed during selection process.';
+        this.getAvailableRoomTypeList();
+      });
   }
 
   private getDefaultCheckOutDate(): Date {

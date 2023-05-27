@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {AvailableRoomType} from "../../../model/AvailableRoomType";
-import {RoomTypeCardData} from "../../../model/RoomTypeCardData";
+import {AvailableRoomType} from "../../../model/room-type/AvailableRoomType";
+import {RoomTypeCardData} from "../../../model/room-type/RoomTypeCardData";
 
 @Component({
   selector: 'app-private-room-type-card',
@@ -10,22 +10,7 @@ import {RoomTypeCardData} from "../../../model/RoomTypeCardData";
 export class PrivateRoomTypeCardComponentComponent {
 
   @Input()
-  public availableRoomType: AvailableRoomType = {
-    roomType: {
-      id: 0,
-      name: "",
-      capacity: 0,
-      pricePerHotelNight: 0,
-      equipmentList: [],
-      image: ""
-    },
-    roomTypeOpinion: {
-      amount: 0,
-      rate: 0,
-      text: ""
-    },
-    available: 0
-  };
+  public availableRoomType: AvailableRoomType = {} as AvailableRoomType;
 
   @Output()
   public cardChanged = new EventEmitter<RoomTypeCardData>();

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {RegisterRequestDto} from '../../../../dto/RegisterRequestDto';
-import {ErrorDto} from '../../../../dto/ErrorDto';
+import {RegisterRequestDto} from '../../../../dto/auth/RegisterRequestDto';
+import {ErrorDto} from '../../../../dto/error/ErrorDto';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../../service/AuthService';
 import {UserProfileService} from '../../../../service/UserProfileService';
-import {UserProfileDetailsResponseDto} from "../../../../dto/UserProfileDetailsResponseDto";
+import {UserProfileDetailsResponseDto} from "../../../../dto/auth/UserProfileDetailsResponseDto";
 
 @Component({
   selector: 'app-signup-page', templateUrl: './signup-page.component.html', styleUrls: ['./signup-page.component.scss']
