@@ -9,6 +9,8 @@ import {
 } from "../../../../component/private/private-select/private-select-component.component";
 import {RoomTypeCardData} from "../../../../model/room-type/RoomTypeCardData";
 import {ErrorDto} from "../../../../dto/error/ErrorDto";
+import {DateUtil} from "../../../../util/DateUtil";
+import {RoomTypeConfigurationUtil} from "../../../../util/RoomTypeConfigurationUtil";
 
 @Component({
   selector: 'app-user-reservation-new-step-first-page',
@@ -23,7 +25,7 @@ export class UserReservationNewStepFirstPageComponent {
 
   shoppingCart: number = 0;
 
-  roomTypeList: string[] = ["Any"];
+  roomTypeList: string[] = [];
 
   numberOfPeopleList: string[] = [];
 
@@ -35,14 +37,15 @@ export class UserReservationNewStepFirstPageComponent {
 
   public availableRoomTypeListRequestDto: AvailableRoomTypeListRequestDto = {
     check_in: new Date().toISOString(),
-    check_out: this.getDefaultCheckOutDate().toISOString(),
+    check_out: this.dateUtil.getDefaultCheckOutDate().toISOString(),
     room_type_name: undefined,
     capacity: undefined
   };
 
   private roomTypeCardDataList: RoomTypeCardData[] = [];
 
-  constructor(private router: Router, private authService: AuthService, private roomTypeService: RoomTypeService) {
+  constructor(public dateUtil: DateUtil, private router: Router, private authService: AuthService,
+              private roomTypeService: RoomTypeService, private roomTypeConfigurationUtil: RoomTypeConfigurationUtil) {
   }
 
   ngOnInit(): void {
@@ -52,25 +55,23 @@ export class UserReservationNewStepFirstPageComponent {
       this.router.navigateByUrl('login-page');
     }
 
-    this.getRoomTypeConfigurationInfo();
-    this.getAvailableRoomTypeList();
+    this.roomTypeConfigurationUtil.getRoomTypeConfigurationInfo().then(value => {
+      this.roomTypeList = value.roomTypeList;
+      this.numberOfPeopleList = value.numberOfPeopleList;
+      this.errorDto = value.errorDto;
+      this.getAvailableRoomTypeList();
+    }).catch(() => {
+      this.errorDto.result = false;
+      this.errorDto.message = 'Failed to load configuration data.';
+    });
   }
 
-  public getDateFromISO(dateInISO: String): string {
-    return dateInISO.split('T')[0];
-  }
-
-  public handleDateChange(event: Event) {
-    const inputDate = event.target as HTMLInputElement;
-    const newDate = new Date(inputDate.value);
-    if (inputDate.id === "check-in" && newDate < new Date(this.availableRoomTypeListRequestDto.check_out) && newDate > new Date()) {
-      this.availableRoomTypeListRequestDto.check_in = new Date(inputDate.value).toISOString();
+  public handleDateChangeAndUpdatePage(event: Event): void {
+    if (this.dateUtil.handleDateChange(event, this.availableRoomTypeListRequestDto)) {
+      this.shoppingCart = 0;
+      this.roomTypeCardDataList = [];
+      this.getAvailableRoomTypeList();
     }
-    if (inputDate.id === "check-out" && newDate > new Date(this.availableRoomTypeListRequestDto.check_in)) {
-      this.availableRoomTypeListRequestDto.check_out = new Date(inputDate.value).toISOString();
-    }
-
-    inputDate.value = this.getDateFromISO(inputDate.id === "check-in" ? this.availableRoomTypeListRequestDto.check_in : this.availableRoomTypeListRequestDto.check_out);
   }
 
   public handleShoppingCartChange(roomTypeCardData: RoomTypeCardData) {
@@ -97,18 +98,6 @@ export class UserReservationNewStepFirstPageComponent {
 
   public routerGoToShoppingCart(): void {
     this.getShoppingCartSummary();
-  }
-
-  private async getRoomTypeConfigurationInfo(): Promise<void> {
-    this.busy = true;
-    this.roomTypeService.getRoomTypeConfigurationInfo().subscribe(response => {
-      response.room_type_list.forEach(room_type => this.roomTypeList.push(room_type));
-      this.numberOfPeopleList = response.capacity_list;
-      this.errorDto.result = true;
-    }, () => {
-      this.errorDto.result = false;
-      this.errorDto.message = 'Room type configuration info not found.';
-    });
   }
 
   private async getAvailableRoomTypeList(): Promise<void> {
@@ -152,12 +141,4 @@ export class UserReservationNewStepFirstPageComponent {
         this.getAvailableRoomTypeList();
       });
   }
-
-  private getDefaultCheckOutDate(): Date {
-    const weekInMs: number = 7 * 24 * 60 * 60 * 1000;
-    const currentDate: Date = new Date();
-
-    return new Date(currentDate.getTime() + weekInMs);
-  }
-
 }

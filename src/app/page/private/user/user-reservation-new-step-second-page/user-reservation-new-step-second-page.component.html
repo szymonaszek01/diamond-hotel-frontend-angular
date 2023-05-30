@@ -24,8 +24,8 @@
               <span>Car rent</span>
             </div>
             <div class="flex flow-col align-right">
-              <span class="date-color">{{this.getDateFromISO(this.shoppingCartModel.checkIn)}}</span>
-              <span class="date-color">{{this.getDateFromISO(this.shoppingCartModel.checkOut)}}</span>
+              <span class="date-color">{{this.dateHandler.getDateFromISO(this.shoppingCartModel.checkIn)}}</span>
+              <span class="date-color">{{this.dateHandler.getDateFromISO(this.shoppingCartModel.checkOut)}}</span>
               <span>{{this.shoppingCartModel.totalWithoutTax}}€</span>
               <span>{{this.shoppingCartModel.tax}}€</span>
               <span>{{this.shoppingCartModel.carPickUpCost}}€</span>
@@ -42,7 +42,7 @@
           </div>
 
           <div class="button-container">
-            <button class="btn btn-secondary" (click)="this.initializePayment()">
+            <button class="btn btn-secondary" (click)="this.pay()">
               Pay
             </button>
             <button class="btn btn-secondary" (click)="this.routerGoToRoomSelection()">
