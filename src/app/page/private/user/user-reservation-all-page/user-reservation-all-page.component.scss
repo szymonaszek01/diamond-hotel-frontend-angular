@@ -1,0 +1,184 @@
+@import "src/styles";
+
+.container {
+  background: linear-gradient(60deg, $color_yellow_200 0%, $color_yellow_100 100%);
+
+  .main {
+    padding: 0 7rem;
+    height: 100vh;
+
+    @media (max-width: $breakpoint_first) {
+      height: 100%;
+    }
+
+    @media (max-width: 1238px) {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 0.5rem;
+    }
+  }
+
+  .flex {
+    align-items: flex-start;
+    margin: 0;
+  }
+
+  .flow-row {
+    flex-flow: nowrap;
+    flex-direction: row;
+
+    @media (max-width: 1238px) {
+      flex-flow: wrap;
+
+      &:first-child {
+        margin-top: 3rem;
+      }
+    }
+  }
+
+  .col-small {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: $color_black_400;
+    border-radius: 0 0 0.8rem 0.8rem;
+
+    @media (max-width: 1238px) {
+      width: 100%;
+      padding: 0 1rem;
+    }
+  }
+
+  .col-large {
+    margin: 0;
+    width: 100%;
+    padding: 3rem 0 3rem 3rem;
+
+    @media (max-width: 1238px) {
+      padding: 0 0 3rem 0;
+    }
+
+    app-common-toast {
+      width: 100%;
+      height: 100vh;
+    }
+  }
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .tbl-header {
+    background-color: $color_black_400;
+    border-radius: 0 0.8rem 0 0;
+  }
+
+  .tbl-content {
+    max-height: 20rem;
+    overflow-x: auto;
+    margin: 0;
+    border-radius: 0 0 0 0.8rem;
+    border: 0.1rem solid $color_black_400;
+  }
+
+  th {
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: $color_yellow_200;
+    text-transform: uppercase;
+
+    @media (max-width: $breakpoint_first) {
+      width: 100%;
+      text-align: center;
+      padding: 1rem 0.1rem;
+    }
+  }
+
+  .border-bottom {
+    border-bottom: none;
+
+    @media (max-width: $breakpoint_first) {
+      border-bottom: 0.1rem solid $color_black_400;
+    }
+  }
+
+  .last-td {
+    border-bottom: none;
+  }
+
+  td {
+    padding: 1rem;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: $color_black_400;
+    background: $color_transparent;
+    border-bottom: 0.1rem solid $color_black_400;
+
+    @media (max-width: $breakpoint_first) {
+      width: 100%;
+      text-align: center;
+      padding: 1rem 0.1rem;
+    }
+  }
+
+  .first {
+    @media (max-width: $breakpoint_first) {
+      background: $color_yellow_400;
+    }
+  }
+
+  thead {
+    tr {
+      @media (max-width: $breakpoint_first) {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      @media (max-width: $breakpoint_first) {
+        display: flex;
+        flex-direction: column;
+        flex-flow: wrap;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    tr:hover {
+      background: $color_yellow_200;
+      cursor: pointer;
+    }
+  }
+
+  .border-none {
+    border-bottom: none;
+  }
+
+  section {
+    margin: 0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    background-color: $color_transparent;
+    border-left: 0.1rem solid $color_black_400;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $color_black_400;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: $color_black_400;
+  }
+}

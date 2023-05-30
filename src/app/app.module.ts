@@ -37,6 +37,9 @@ import {
 import {
   PrivateRoomTypeCardSummaryComponent
 } from './component/private/private-room-type-card-summary/private-room-type-card-summary.component';
+import {
+  UserReservationAllPageComponent
+} from './page/private/user/user-reservation-all-page/user-reservation-all-page.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,8 @@ import {
     CommonToastComponentComponent,
     CommonLoadingDataWindowComponnetComponent,
     UserReservationNewStepSecondPageComponent,
-    PrivateRoomTypeCardSummaryComponent
+    PrivateRoomTypeCardSummaryComponent,
+    UserReservationAllPageComponent
   ],
   imports: [
     BrowserModule,
