@@ -9,7 +9,6 @@ import {UserProfile} from "../model/auth/UserProfile";
 @Injectable({
   providedIn: 'root'
 })
-
 export class UserProfileService {
 
   // URL_PRODUCTION

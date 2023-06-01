@@ -16,7 +16,6 @@ import {CostDto} from "../dto/shopping-cart/CostDto";
 @Injectable({
   providedIn: 'root'
 })
-
 export class RoomTypeService {
 
   // URL_PRODUCTION
@@ -82,12 +81,14 @@ export class RoomTypeService {
 
   public toShoppingCartModelMapper(response: ShoppingCartSummaryResponseDto): ShoppingCartModel {
     return {
+      userProfileId: 0,
       checkIn: response.check_in,
       checkOut: response.check_out,
       totalWithoutTax: response.cost_summary.total_without_tax,
       carRentCost: response.cost_summary.car_rent,
       carPickUpCost: response.cost_summary.car_pick_up,
       tax: response.cost_summary.tax,
+      flightNumber: "",
       roomTypeSummaryInfo: response.room_type_summary.map(roomTypeSummary => {
         return {
           roomTypeCardData: {

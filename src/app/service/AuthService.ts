@@ -23,6 +23,7 @@ export class AuthService {
 
   public saveShoppingCartDetailsResponseDtoInSessionStorage(response: ShoppingCartModel) {
     console.log(response);
+    response.userProfileId = Number.parseInt(sessionStorage.getItem("id") ?? "0");
     sessionStorage.setItem('shoppingCartModel', JSON.stringify(response));
   }
 
