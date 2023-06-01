@@ -66,7 +66,7 @@ export class UserReservationNewStepFirstPageComponent {
     });
   }
 
-  public handleDateChangeAndUpdatePage(event: Event): void {
+  public onDateSelectOptionChanged(event: Event): void {
     if (this.dateUtil.handleDateChange(event, this.availableRoomTypeListRequestDto)) {
       this.shoppingCart = 0;
       this.roomTypeCardDataList = [];
@@ -74,7 +74,13 @@ export class UserReservationNewStepFirstPageComponent {
     }
   }
 
-  public handleShoppingCartChange(roomTypeCardData: RoomTypeCardData) {
+  public onRoomTypeCapacitySelectOptionChanged(selectedOption: string) {
+    this.availableRoomTypeListRequestDto.room_type_name = selectedOption;
+    this.availableRoomTypeListRequestDto.capacity = selectedOption;
+    this.getAvailableRoomTypeList();
+  }
+
+  public onShoppingCartOptionChanged(roomTypeCardData: RoomTypeCardData) {
     this.shoppingCart += roomTypeCardData.amount;
     let result = this.roomTypeCardDataList.find(r => roomTypeCardData.roomTypeName === r.roomTypeName);
     if (result) {
@@ -88,12 +94,6 @@ export class UserReservationNewStepFirstPageComponent {
     setTimeout(() => {
       spanElement.classList.remove('fade-in-animation');
     }, 2 * 1000);
-  }
-
-  public onClickSearchButton(): void {
-    this.availableRoomTypeListRequestDto.room_type_name = this.roomTypeNameSelect?.getSelectedOption();
-    this.availableRoomTypeListRequestDto.capacity = this.capacitySelect?.getSelectedOption();
-    this.getAvailableRoomTypeList();
   }
 
   public routerGoToShoppingCart(): void {

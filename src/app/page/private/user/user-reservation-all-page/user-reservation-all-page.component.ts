@@ -60,7 +60,7 @@ export class UserReservationAllPageComponent {
     });
   }
 
-  public handleDateChangeAndUpdatePage(event: Event): void {
+  public onDateSelectOptionChanged(event: Event): void {
     this.userReservationAllRequestDto.room_type_name = this.roomTypeNameSelect?.getSelectedOption();
     this.userReservationAllRequestDto.capacity = this.capacitySelect?.getSelectedOption();
     const inputDate = event.target as HTMLInputElement;
@@ -92,9 +92,9 @@ export class UserReservationAllPageComponent {
     this.getUserReservationList();
   }
 
-  public onClickFilterButton(): void {
-    this.userReservationAllRequestDto.room_type_name = this.roomTypeNameSelect?.getSelectedOption();
-    this.userReservationAllRequestDto.capacity = this.capacitySelect?.getSelectedOption();
+  public onRoomTypeCapacitySelectOptionChanged(selectedOption: string) {
+    this.userReservationAllRequestDto.room_type_name = selectedOption;
+    this.userReservationAllRequestDto.capacity = selectedOption;
     this.getUserReservationList();
   }
 

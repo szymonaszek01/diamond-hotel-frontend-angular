@@ -1,15 +1,15 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../../../service/AuthService";
 import {RoomTypeService} from "../../../../service/RoomTypeService";
 import {ShoppingCartModel} from "../../../../model/shopping-cart/ShoppingCartModel";
-import {
-  PrivateSelectComponentComponent
-} from "../../../../component/private/private-select/private-select-component.component";
-import {RoomTypeCardData} from "../../../../model/room-type/RoomTypeCardData";
 import {CarDto} from "../../../../dto/shopping-cart/CarDto";
-import {PaymentService} from "../../../../service/PaymentService";
+import {TransactionService} from "../../../../service/TransactionService";
 import {DateUtil} from "../../../../util/DateUtil";
+import {ReservationService} from "../../../../service/ReservationService";
+import {UserReservationNewRequestDto} from "../../../../dto/reservation/UserReservationNewRequestDto";
+import {ErrorDto} from "../../../../dto/error/ErrorDto";
+import {TransactionStatusInfoDto} from "../../../../dto/transaction/TransactionStatusInfoDto";
 
 @Component({
   selector: 'app-user-reservation-new-step-second-page',
@@ -32,8 +32,10 @@ export class UserReservationNewStepSecondPageComponent {
 
   carRentDuration: string = '';
 
+  errorDto: ErrorDto = {} as ErrorDto;
+
   constructor(public dateHandler: DateUtil, private router: Router, private authService: AuthService, private roomTypeService: RoomTypeService,
-              private paymentService: PaymentService) {
+              private transactionService: TransactionService, private reservationService: ReservationService) {
     window.addEventListener('popstate', this.handlePopState);
   }
 
@@ -47,6 +49,8 @@ export class UserReservationNewStepSecondPageComponent {
       this.shoppingCartModel = JSON.parse(shoppingCartModel);
       this.shoppingCartModel.roomTypeSummaryInfo.forEach(roomTypeSummaryInfo => this.shoppingCart += roomTypeSummaryInfo.roomTypeCardData.amount);
     }
+    this.errorDto.result = true;
+    this.errorDto.message = "";
   }
 
   public handlePopState(): void {
@@ -97,13 +101,64 @@ export class UserReservationNewStepSecondPageComponent {
   }
 
   public pay(): void {
-    this.initializePayment()
+    this.createNewReservation()
   }
 
-  private async initializePayment() {
-    this.paymentService.initializePayment('Diamond Hotel', 'Reservation', this.getTotalCost()).subscribe(response => {
+  private async createNewReservation() {
+    this.busy = true;
+    this.shoppingCartModel.flightNumber = this.flightNumber;
+    const userReservationNewRequestDto: UserReservationNewRequestDto = this.reservationService.toUserReservationNewRequestDtoMapper(this.shoppingCartModel);
+    this.reservationService.createNewReservation(userReservationNewRequestDto).subscribe(response => {
+      this.errorDto.result = true;
+      this.busy = false;
+      this.initializePayment(response.transaction_code, response.reservation_cost);
+    }, () => {
+      this.errorDto.result = false;
+      this.busy = false;
+      this.errorDto.message = "Number of available rooms has changed. Please, create reservation again."
+    })
+  }
+
+  private async initializePayment(code: string, cost: number) {
+    this.transactionService.initializePayment('Diamond Hotel', 'Reservation - ' + code, cost).subscribe(response => {
       this.authService.saveStripeTokenInSessionStorage(response);
+      this.approveTransaction(code);
+    }, () => {
+      this.cancelTransaction(code);
+    });
+  }
+
+  private async approveTransaction(code: string) {
+    const transactionStatusInfoDto: TransactionStatusInfoDto = {
+      code: code,
+      status: "APPROVED"
+    };
+    this.busy = true;
+    this.transactionService.changeTransactionStatus(transactionStatusInfoDto).subscribe(() => {
+      this.busy = false;
+      this.errorDto.result = true;
       this.router.navigateByUrl('private/user/reservation/all');
+    }, () => {
+      this.busy = false;
+      this.errorDto.result = false;
+      this.errorDto.message = "Transaction not found. Please, pay again.";
+    });
+  }
+
+  private async cancelTransaction(code: string) {
+    const transactionStatusInfoDto: TransactionStatusInfoDto = {
+      code: code,
+      status: "CANCELLED"
+    };
+    this.busy = true;
+    this.transactionService.changeTransactionStatus(transactionStatusInfoDto).subscribe(() => {
+      this.busy = false;
+      this.errorDto.result = true;
+      this.router.navigateByUrl('private/user/reservation/new/step/first');
+    }, () => {
+      this.busy = false;
+      this.errorDto.result = false;
+      this.errorDto.message = "Transaction not found. Please, create reservation again.";
     });
   }
 

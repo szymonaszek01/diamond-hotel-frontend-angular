@@ -52,6 +52,7 @@
         </div>
       </div>
       <div class="flex flow-col col-large">
+        <app-common-toast *ngIf="!this.errorDto.result" [message]="this.errorDto.message ?? ''"></app-common-toast>
         <div class="additional-data-card">
           <div class="flex flow-row">
             <h2>FLight</h2>

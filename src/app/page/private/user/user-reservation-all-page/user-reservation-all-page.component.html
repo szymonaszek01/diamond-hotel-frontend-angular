@@ -10,17 +10,18 @@
     <div class="flex flow-row">
       <div class="flex flow-col col-small">
         <div class="filter-box">
-          <input [value]="this.dateUtil.getDateFromISO(this.userReservationAllRequestDto.check_in)" id="check-in" type="date" placeholder="Check in"
-                 (input)="this.handleDateChangeAndUpdatePage($event)" />
-          <input [value]="this.dateUtil.getDateFromISO(this.userReservationAllRequestDto.check_out)" id="check-out" type="date" placeholder="Check out"
-                 (input)="this.handleDateChangeAndUpdatePage($event)" />
+          <input [value]="this.dateUtil.getDateFromISO(this.userReservationAllRequestDto.check_in)" id="check-in"
+                 type="date" placeholder="Check in"
+                 (input)="this.onDateSelectOptionChanged($event)"/>
+          <input [value]="this.dateUtil.getDateFromISO(this.userReservationAllRequestDto.check_out)" id="check-out"
+                 type="date" placeholder="Check out"
+                 (input)="this.onDateSelectOptionChanged($event)"/>
           <app-private-select #roomTypeNameSelect [id]="1" [option_list]="this.roomTypeList"
-                              [placeholder]="'Room type'"></app-private-select>
+                              [placeholder]="'Room type'"
+                              (selectChanged)="this.onRoomTypeCapacitySelectOptionChanged($event)"></app-private-select>
           <app-private-select #capacitySelect [id]="2" [option_list]="this.numberOfPeopleList"
-                              [placeholder]="'Number of people'"></app-private-select>
-          <button class="btn btn-secondary" (click)="this.onClickFilterButton()">
-            Filter
-          </button>
+                              [placeholder]="'Number of people'"
+                              (selectChanged)="this.onRoomTypeCapacitySelectOptionChanged($event)"></app-private-select>
         </div>
       </div>
       <div class="flex flow-col col-large">
@@ -32,12 +33,12 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Code</th>
+                  <th>Transaction</th>
                   <th>Room type</th>
                   <th>Check in</th>
                   <th>Check out</th>
                   <th>Capacity</th>
-                  <th>Cost</th>
+                  <th>Room cost</th>
                 </tr>
                 </thead>
               </table>
@@ -47,12 +48,12 @@
                 <tbody>
                 <tr *ngFor="let userReservation of this.userReservationInfoList; let i = index; let last = last">
                   <td class="first" [ngClass]="{ 'border-bottom': last }">{{i + 1}}</td>
-                  <td [ngClass]="{ 'border-bottom': last }">{{userReservation.code}}</td>
+                  <td [ngClass]="{ 'border-bottom': last }">{{userReservation.transactionCode}}</td>
                   <td [ngClass]="{ 'border-bottom': last }">{{userReservation.roomType}}</td>
                   <td [ngClass]="{ 'border-bottom': last }">{{userReservation.checkIn}}</td>
                   <td [ngClass]="{ 'border-bottom': last }">{{userReservation.checkOut}}</td>
                   <td [ngClass]="{ 'border-bottom': last }">{{userReservation.capacity}}</td>
-                  <td [ngClass]="{ 'border-bottom last-td': last }">{{userReservation.cost}}€</td>
+                  <td [ngClass]="{ 'border-bottom last-td': last }">{{userReservation.roomCost}}€</td>
                 </tr>
                 </tbody>
               </table>

@@ -15,24 +15,23 @@
       <div class="flex flow-col col-small">
         <div class="filter-box">
           <input id="check-in" type="date" placeholder="Check in"
-                 (input)="this.handleDateChangeAndUpdatePage($event)"
+                 (input)="this.onDateSelectOptionChanged($event)"
                  [value]="this.dateUtil.getDateFromISO(this.availableRoomTypeListRequestDto.check_in)"/>
           <input id="check-out" type="date" placeholder="Check out"
-                 (input)="this.handleDateChangeAndUpdatePage($event)"
+                 (input)="this.onDateSelectOptionChanged($event)"
                  [value]="this.dateUtil.getDateFromISO(this.availableRoomTypeListRequestDto.check_out)"/>
           <app-private-select #roomTypeNameSelect [id]="1" [option_list]="this.roomTypeList"
-                              [placeholder]="'Room type'"></app-private-select>
+                              [placeholder]="'Room type'"
+                              (selectChanged)="this.onRoomTypeCapacitySelectOptionChanged($event)"></app-private-select>
           <app-private-select #capacitySelect [id]="2" [option_list]="this.numberOfPeopleList"
-                              [placeholder]="'Number of people'"></app-private-select>
-          <button class="btn btn-secondary" (click)="this.onClickSearchButton()">
-            Search
-          </button>
+                              [placeholder]="'Number of people'"
+                              (selectChanged)="this.onRoomTypeCapacitySelectOptionChanged($event)"></app-private-select>
         </div>
       </div>
       <div class="flex flow-col col-large">
         <app-common-toast *ngIf="!this.errorDto.result" [message]="this.errorDto.message ?? ''"></app-common-toast>
         <app-private-room-type-card *ngFor="let availableRoomType of this.availableRoomTypeList"
-                                    (cardChanged)="this.handleShoppingCartChange($event)"
+                                    (cardChanged)="this.onShoppingCartOptionChanged($event)"
                                     [availableRoomType]="availableRoomType"></app-private-room-type-card>
       </div>
     </div>
