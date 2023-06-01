@@ -1,9 +1,9 @@
 export interface UserReservationInfo {
   id: number;
-  code: string;
+  transactionCode: string;
   roomType: string;
   checkIn: string;
   checkOut: string;
   capacity: number;
-  cost: number;
+  roomCost: number;
 }
