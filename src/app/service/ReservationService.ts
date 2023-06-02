@@ -7,6 +7,12 @@ import {UserReservationInfo} from "../model/reservation/UserReservationInfo";
 import {UserReservationNewRequestDto} from "../dto/reservation/UserReservationNewRequestDto";
 import {UserReservationNewResponseDto} from "../dto/reservation/UserReservationNewResponseDto";
 import {ShoppingCartModel} from "../model/shopping-cart/ShoppingCartModel";
+import {UserReservationDetailsInfoResponseDto} from "../dto/reservation/UserReservationDetailsInfoResponseDto";
+import {UserReservationDetails} from "../model/reservation/UserReservationDetails";
+import {RoomTypeService} from "./RoomTypeService";
+import {RoomService} from "./RoomService";
+import {TransactionService} from "./TransactionService";
+import {UserReservationDetailsInfoRequestDto} from "../model/reservation/UserReservationDetailsInfoRequestDto";
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +20,12 @@ import {ShoppingCartModel} from "../model/shopping-cart/ShoppingCartModel";
 export class ReservationService {
 
   // URL_PRODUCTION
-  private url = 'https://diamond-hotel-backend.onrender.com/api/v1/reservation';
+  // private url = 'https://diamond-hotel-backend.onrender.com/api/v1/reservation';
 
   // URL_LOCALHOST
-  // private url = 'http://localhost:5432/api/v1/reservation';
+  private url = 'http://localhost:5432/api/v1/reservation';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private roomTypeService: RoomTypeService, private roomService: RoomService, private transactionService: TransactionService) {
   }
 
   public getUserReservationInfoList(userReservationAllRequestDto: UserReservationAllRequestDto): Observable<UserReservationAllResponseDto> {
@@ -28,6 +34,10 @@ export class ReservationService {
 
   public createNewReservation(userReservationNewRequestDto: UserReservationNewRequestDto): Observable<UserReservationNewResponseDto> {
     return this.http.post<UserReservationNewResponseDto>(this.url + '/create/new', userReservationNewRequestDto);
+  }
+
+  public getUserReservationDetailsInfo(userReservationDetailsInfoRequestDto: UserReservationDetailsInfoRequestDto): Observable<UserReservationDetailsInfoResponseDto> {
+    return this.http.post<UserReservationDetailsInfoResponseDto>(this.url + '/details/info', userReservationDetailsInfoRequestDto);
   }
 
   public toUserReservationInfoListMapper(userReservationAllResponseDto: UserReservationAllResponseDto): UserReservationInfo[] {
@@ -63,5 +73,18 @@ export class ReservationService {
         tax: shoppingCartModel.tax
       }
     };
+  }
+
+  public toUserReservationDetailsMapper(userReservationDetailsInfoResponseDto: UserReservationDetailsInfoResponseDto): UserReservationDetails {
+    return {
+      checkIn: userReservationDetailsInfoResponseDto.check_in,
+      checkOut: userReservationDetailsInfoResponseDto.check_out,
+      roomCost: userReservationDetailsInfoResponseDto.room_cost,
+      flightNumber: userReservationDetailsInfoResponseDto.flight_number,
+      roomType: this.roomTypeService.toRoomTypeMapper(userReservationDetailsInfoResponseDto),
+      roomTypeOpinion: this.roomTypeService.toRoomTypeOpinionMapper(userReservationDetailsInfoResponseDto),
+      room: this.roomService.toRoomMapper(userReservationDetailsInfoResponseDto),
+      transaction: this.transactionService.toTransactionMapper(userReservationDetailsInfoResponseDto)
+    }
   }
 }

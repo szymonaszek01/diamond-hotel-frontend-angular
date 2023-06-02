@@ -12,6 +12,9 @@ import {ShoppingCartModel} from "../model/shopping-cart/ShoppingCartModel";
 import {RoomTypeCardData} from "../model/room-type/RoomTypeCardData";
 import {CarDto} from "../dto/shopping-cart/CarDto";
 import {CostDto} from "../dto/shopping-cart/CostDto";
+import {UserReservationDetailsInfoResponseDto} from "../dto/reservation/UserReservationDetailsInfoResponseDto";
+import {RoomType} from "../model/room-type/RoomType";
+import {RoomTypeOpinion} from "../model/room-type/RoomTypeOpinion";
 
 @Injectable({
   providedIn: 'root'
@@ -100,6 +103,25 @@ export class RoomTypeService {
           capacity: roomTypeSummary.capacity
         }
       })
+    };
+  }
+
+  public toRoomTypeMapper(userReservationDetailsInfoResponseDto: UserReservationDetailsInfoResponseDto): RoomType {
+    return {
+      id: userReservationDetailsInfoResponseDto.room_type.id,
+      name: userReservationDetailsInfoResponseDto.room_type.name,
+      capacity: userReservationDetailsInfoResponseDto.room_type.capacity,
+      pricePerHotelNight: userReservationDetailsInfoResponseDto.room_type.price_per_hotel_night,
+      equipmentList: userReservationDetailsInfoResponseDto.room_type.equipment_list,
+      image: userReservationDetailsInfoResponseDto.room_type.image
+    };
+  }
+
+  public toRoomTypeOpinionMapper(userReservationDetailsInfoResponseDto: UserReservationDetailsInfoResponseDto): RoomTypeOpinion {
+    return {
+      amount: userReservationDetailsInfoResponseDto.room_type.opinion.opinion_amount,
+      rate: Number.parseFloat(userReservationDetailsInfoResponseDto.room_type.opinion.opinion_summary_rate.toFixed(1)),
+      text: userReservationDetailsInfoResponseDto.room_type.opinion.opinion_summary_text
     };
   }
 }

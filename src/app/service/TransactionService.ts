@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {TransactionStatusInfoDto} from "../dto/transaction/TransactionStatusInfoDto";
+import {UserReservationDetailsInfoResponseDto} from "../dto/reservation/UserReservationDetailsInfoResponseDto";
+import {Transaction} from "../model/transaction/Transaction";
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +11,10 @@ import {TransactionStatusInfoDto} from "../dto/transaction/TransactionStatusInfo
 export class TransactionService {
 
   // URL_PRODUCTION
-  private url = 'https://diamond-hotel-backend.onrender.com/api/v1/transaction';
+  // private url = 'https://diamond-hotel-backend.onrender.com/api/v1/transaction';
 
   // URL_LOCALHOST
-  // private url = 'http://localhost:5432/api/v1/transaction';
+  private url = 'http://localhost:5432/api/v1/transaction';
 
   private payment: string = 'https://checkout.stripe.com/checkout.js';
 
@@ -45,6 +47,17 @@ export class TransactionService {
         amount: amount * 100
       });
     });
+  }
+
+  public toTransactionMapper(userReservationDetailsInfoResponseDto: UserReservationDetailsInfoResponseDto): Transaction {
+    return {
+      code: userReservationDetailsInfoResponseDto.transaction.code,
+      totalWithoutTax: userReservationDetailsInfoResponseDto.transaction.total_without_tax,
+      tax: userReservationDetailsInfoResponseDto.transaction.tax,
+      carRent: userReservationDetailsInfoResponseDto.transaction.car_rent,
+      carPickUp: userReservationDetailsInfoResponseDto.transaction.car_pick_up,
+      status: userReservationDetailsInfoResponseDto.transaction.status
+    };
   }
 
   private invokeStripe(): void {
