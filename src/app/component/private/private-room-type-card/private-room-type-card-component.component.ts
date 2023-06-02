@@ -24,7 +24,7 @@ export class PrivateRoomTypeCardComponentComponent {
   }
 
   public onButtonPlus(): void {
-    if (this.availableRoomType.available < 1) {
+    if (!this.availableRoomType.available || this.availableRoomType.available < 1) {
       return;
     }
 
@@ -37,7 +37,7 @@ export class PrivateRoomTypeCardComponentComponent {
   }
 
   public onButtonMinus(): void {
-    if (this.selectedRoomAmount < 1) {
+    if (!this.availableRoomType.available || this.selectedRoomAmount < 1) {
       return;
     }
 
