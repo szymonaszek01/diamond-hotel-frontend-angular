@@ -27,38 +27,7 @@
       <div class="flex flow-col col-large">
         <div class="flex flow-row">
           <app-common-toast *ngIf="!this.errorDto.result" [message]="this.errorDto.message ?? ''"></app-common-toast>
-          <section *ngIf="this.userReservationInfoList.length > 0">
-            <div class="tbl-header">
-              <table cellpadding="0" cellspacing="0" border="0">
-                <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Transaction</th>
-                  <th>Room type</th>
-                  <th>Check in</th>
-                  <th>Check out</th>
-                  <th>Capacity</th>
-                  <th>Room cost</th>
-                </tr>
-                </thead>
-              </table>
-            </div>
-            <div class="tbl-content">
-              <table cellpadding="0" cellspacing="0" border="0">
-                <tbody>
-                <tr *ngFor="let userReservation of this.userReservationInfoList; let i = index; let last = last">
-                  <td class="first" [ngClass]="{ 'border-bottom': last }">{{i + 1}}</td>
-                  <td [ngClass]="{ 'border-bottom': last }">{{userReservation.transactionCode}}</td>
-                  <td [ngClass]="{ 'border-bottom': last }">{{userReservation.roomType}}</td>
-                  <td [ngClass]="{ 'border-bottom': last }">{{userReservation.checkIn}}</td>
-                  <td [ngClass]="{ 'border-bottom': last }">{{userReservation.checkOut}}</td>
-                  <td [ngClass]="{ 'border-bottom': last }">{{userReservation.capacity}}</td>
-                  <td [ngClass]="{ 'border-bottom last-td': last }">{{userReservation.roomCost}}€</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+          <app-common-table [table]="this.createTable()"></app-common-table>
         </div>
       </div>
     </div>

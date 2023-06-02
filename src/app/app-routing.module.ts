@@ -13,6 +13,9 @@ import {
 import {
   UserReservationAllPageComponent
 } from "./page/private/user/user-reservation-all-page/user-reservation-all-page.component";
+import {
+  UserReservationDetailsPageComponent
+} from "./page/private/user/user-reservation-details-page/user-reservation-details-page.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home-page', pathMatch: 'full'},
@@ -22,7 +25,8 @@ const routes: Routes = [
   {path: 'private/user/dashboard-page', component: UserDashboardPageComponent},
   {path: 'private/user/reservation/new/step/first', component: UserReservationNewStepFirstPageComponent},
   {path: 'private/user/reservation/new/step/second', component: UserReservationNewStepSecondPageComponent},
-  {path: 'private/user/reservation/all', component: UserReservationAllPageComponent}
+  {path: 'private/user/reservation/all', component: UserReservationAllPageComponent},
+  {path: 'private/user/reservation/:id/details/info', component: UserReservationDetailsPageComponent}
 ];
 
 @NgModule({

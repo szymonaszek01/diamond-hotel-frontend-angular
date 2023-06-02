@@ -10,6 +10,8 @@ import {
 import {ErrorDto} from "../../../../dto/error/ErrorDto";
 import {RoomTypeConfigurationUtil} from "../../../../util/RoomTypeConfigurationUtil";
 import {UserReservationInfo} from "../../../../model/reservation/UserReservationInfo";
+import {Table} from "../../../../model/common/Table";
+import {Row} from "../../../../model/common/Row";
 
 @Component({
   selector: 'app-user-reservation-all-page',
@@ -96,6 +98,34 @@ export class UserReservationAllPageComponent {
     this.userReservationAllRequestDto.room_type_name = selectedOption;
     this.userReservationAllRequestDto.capacity = selectedOption;
     this.getUserReservationList();
+  }
+
+  public createTable(): Table {
+    return {
+      headerList: ["No", "Transaction", "Room type", "Check in", "Check out", "Capacity", "Room cost"],
+      rowList: this.toRowListMapper()
+    };
+  }
+
+  private toRowListMapper(): Row[] {
+    let counter: number = 1;
+    let rowList: Row[] = [];
+    this.userReservationInfoList.forEach(userReservationInfo => {
+      rowList.push({
+        id: userReservationInfo.id,
+        no: counter,
+        cellList: [
+          userReservationInfo.transactionCode,
+          userReservationInfo.roomType,
+          userReservationInfo.checkIn,
+          userReservationInfo.checkOut,
+          userReservationInfo.capacity.toString(),
+          userReservationInfo.roomCost + "€"
+        ]
+      });
+      counter++;
+    });
+    return rowList;
   }
 
   private async getUserReservationList() {

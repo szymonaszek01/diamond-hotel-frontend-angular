@@ -1,0 +1,42 @@
+@import "src/styles";
+
+.container {
+  background: linear-gradient(60deg, $color_yellow_200 0%, $color_yellow_100 100%);
+
+  .main {
+    padding: 3rem 17rem 3rem 17rem;
+    @media (max-width: 1238px) {
+      width: 100%;
+      padding: 0;
+    }
+  }
+
+  .whole-page {
+    height: 100vh;
+  }
+
+  .flex {
+    align-items: flex-start;
+  }
+
+  .flow-row {
+    flex-flow: nowrap;
+    flex-direction: row;
+
+    @media (max-width: 1238px) {
+      flex-flow: wrap;
+
+      &:first-child {
+        margin-top: 3rem;
+      }
+    }
+
+    .app-common-toast {
+      width: 100%;
+    }
+  }
+
+  app-private-room-type-card {
+    width: 100%;
+  }
+}
