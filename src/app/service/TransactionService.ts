@@ -11,10 +11,10 @@ import {Transaction} from "../model/transaction/Transaction";
 export class TransactionService {
 
   // URL_PRODUCTION
-  // private url = 'https://diamond-hotel-backend.onrender.com/api/v1/transaction';
+  private url = 'https://diamond-hotel-backend.onrender.com/api/v1/transaction';
 
   // URL_LOCALHOST
-  private url = 'http://localhost:5432/api/v1/transaction';
+  // private url = 'http://localhost:5432/api/v1/transaction';
 
   private payment: string = 'https://checkout.stripe.com/checkout.js';
 
