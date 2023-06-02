@@ -4,5 +4,5 @@ import {RoomTypeOpinion} from "./RoomTypeOpinion";
 export interface AvailableRoomType {
   roomType: RoomType;
   roomTypeOpinion: RoomTypeOpinion;
-  available: number;
+  available?: number;
 }
