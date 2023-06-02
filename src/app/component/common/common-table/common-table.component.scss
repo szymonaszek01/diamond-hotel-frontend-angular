@@ -1,0 +1,15 @@
+@import "src/styles";
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: $color_transparent;
+  border-left: 0.1rem solid $color_black_400;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $color_black_400;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $color_black_400;
+}

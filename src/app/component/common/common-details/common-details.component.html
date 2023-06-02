@@ -1,0 +1,21 @@
+<section>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+      <tr>
+        <th>{{this.title}}</th>
+      </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+      <tr *ngFor="let detail of this.detailList; let last = last">
+        <td *ngIf="detail.visibility">{{detail.label}}</td>
+        <td *ngIf="detail.visibility">{{detail.value}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

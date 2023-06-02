@@ -1,0 +1,30 @@
+@import "src/styles";
+
+tbody {
+  tr:hover {
+    background: $color_transparent;
+    cursor: auto;
+  }
+}
+
+.tbl-content {
+  max-height: none;
+}
+
+td {
+  @media (max-width: $breakpoint_first) {
+    border: none;
+    border-bottom: 0.1rem solid $color_black_400;
+  }
+
+  &:last-child {
+    border-left: 0.1rem solid $color_black_400;
+    @media (max-width: $breakpoint_first) {
+      border-left: none;
+    }
+  }
+}
+
+section {
+  margin: 3rem 0 0 0;
+}
