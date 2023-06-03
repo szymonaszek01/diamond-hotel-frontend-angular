@@ -18,16 +18,16 @@
                  (input)="this.onDateSelectOptionChanged($event)"/>
           <app-private-select #roomTypeNameSelect [id]="1" [option_list]="this.roomTypeList"
                               [placeholder]="'Room type'"
-                              (selectChanged)="this.onRoomTypeCapacitySelectOptionChanged($event)"></app-private-select>
+                              (selectChanged)="this.onRoomTypeSelectOptionChanged($event)"></app-private-select>
           <app-private-select #capacitySelect [id]="2" [option_list]="this.numberOfPeopleList"
                               [placeholder]="'Number of people'"
-                              (selectChanged)="this.onRoomTypeCapacitySelectOptionChanged($event)"></app-private-select>
+                              (selectChanged)="this.onCapacitySelectOptionChanged($event)"></app-private-select>
         </div>
       </div>
       <div class="flex flow-col col-large">
         <div class="flex flow-row">
           <app-common-toast *ngIf="!this.errorDto.result" [message]="this.errorDto.message ?? ''"></app-common-toast>
-          <app-common-table [table]="this.createTable()"></app-common-table>
+          <app-common-table *ngIf="this.errorDto.result" [table]="this.createTable()"></app-common-table>
         </div>
       </div>
     </div>

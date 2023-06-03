@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginRequestDto} from '../../../dto/auth/LoginRequestDto';
+import {LoginRequestDto} from '../../../dto/user-profile/LoginRequestDto';
 import {UserProfileService} from '../../../service/UserProfileService';
 import {AuthService} from '../../../service/AuthService';
 import {Router} from '@angular/router';
 import {ErrorDto} from '../../../dto/error/ErrorDto';
-import {UserProfileDetailsResponseDto} from "../../../dto/auth/UserProfileDetailsResponseDto";
+import {UserProfileDetailsResponseDto} from "../../../dto/user-profile/UserProfileDetailsResponseDto";
 
 @Component({
   selector: 'app-login-page', templateUrl: './login-page.component.html', styleUrls: ['./login-page.component.scss']
@@ -32,7 +32,7 @@ export class LoginPageComponent implements OnInit {
         this.authService.logout();
         this.router.navigateByUrl('login-page');
       } else {
-        this.router.navigateByUrl('private/user/dashboard-page').then(() => window.location.reload());
+        this.router.navigateByUrl('private/user/' + this.authService.getItem("id") + '/dashboard-page').then(() => window.location.reload());
       }
     }
   }
@@ -68,7 +68,7 @@ export class LoginPageComponent implements OnInit {
   private onResponse(response: UserProfileDetailsResponseDto): void {
     this.busy = false;
     this.errorDto.result = true;
-    this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response.jwt, this.userProfileService.toUserProfileMapper(response));
-    this.router.navigateByUrl('private/user/dashboard-page');
+    this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response.jwt, this.userProfileService.toUserProfileMapper(response.user_profile));
+    this.router.navigateByUrl('private/user/' + this.authService.getItem("id") + '/dashboard-page');
   }
 }

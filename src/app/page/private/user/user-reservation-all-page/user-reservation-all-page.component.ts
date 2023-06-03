@@ -94,8 +94,12 @@ export class UserReservationAllPageComponent {
     this.getUserReservationList();
   }
 
-  public onRoomTypeCapacitySelectOptionChanged(selectedOption: string) {
+  public onRoomTypeSelectOptionChanged(selectedOption: string) {
     this.userReservationAllRequestDto.room_type_name = selectedOption;
+    this.getUserReservationList();
+  }
+
+  public onCapacitySelectOptionChanged(selectedOption: string) {
     this.userReservationAllRequestDto.capacity = selectedOption;
     this.getUserReservationList();
   }

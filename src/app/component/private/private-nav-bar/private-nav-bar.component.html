@@ -3,7 +3,7 @@
     <div class="flex flow-row space-between">
       <li class="menu">
         <div class="logotype">
-          <a href="/private/user/dashboard-page"><img src="/assets/images/logotype.png" alt="logotype"></a>
+          <a href="{{this.homeLink}}"><img src="/assets/images/logotype.png" alt="logotype"></a>
         </div>
         <a routerLink="/private/user/dashboard-page" class="menu-item">{{this.email}}</a>
       </li>
@@ -11,9 +11,9 @@
         <a>&#9776;</a>
       </li>
       <li class="menu" [class.is-open]="isMenuOpen">
-        <a routerLink="/private/user/dashboard-page" class="menu-item">Home</a>
-        <a routerLink="/private/user/dashboard-page" class="menu-item">Service</a>
-        <a routerLink="/private/user/reservation/new/step/first" class="menu-item">Reservation</a>
+        <a routerLink="{{this.homeLink}}" class="menu-item">Home</a>
+        <a routerLink="{{this.accountLink}}" class="menu-item">ACCOUNT</a>
+        <a routerLink="{{this.reservationLink}}" class="menu-item">Reservation</a>
         <a class="menu-item emphasis" (click)="this.signOut()">Sign out</a>
       </li>
     </div>

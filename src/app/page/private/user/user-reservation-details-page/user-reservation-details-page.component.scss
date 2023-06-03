@@ -11,6 +11,16 @@
     }
   }
 
+  .action {
+    position: absolute;
+    bottom: 0;
+    padding: 1rem 0;
+
+    @media (max-width: 820px) {
+      position: relative;
+    }
+  }
+
   .whole-page {
     height: 100vh;
   }

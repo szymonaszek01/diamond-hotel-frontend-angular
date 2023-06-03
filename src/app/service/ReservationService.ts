@@ -13,6 +13,7 @@ import {RoomTypeService} from "./RoomTypeService";
 import {RoomService} from "./RoomService";
 import {TransactionService} from "./TransactionService";
 import {UserReservationDetailsInfoRequestDto} from "../model/reservation/UserReservationDetailsInfoRequestDto";
+import {UserReservationCancellationResponseDto} from "../dto/reservation/UserReservationCancellationResponseDto";
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +33,16 @@ export class ReservationService {
     return this.http.post<UserReservationAllResponseDto>(this.url + '/all/info', userReservationAllRequestDto);
   }
 
-  public createNewReservation(userReservationNewRequestDto: UserReservationNewRequestDto): Observable<UserReservationNewResponseDto> {
+  public createNewUserReservation(userReservationNewRequestDto: UserReservationNewRequestDto): Observable<UserReservationNewResponseDto> {
     return this.http.post<UserReservationNewResponseDto>(this.url + '/create/new', userReservationNewRequestDto);
   }
 
   public getUserReservationDetailsInfo(userReservationDetailsInfoRequestDto: UserReservationDetailsInfoRequestDto): Observable<UserReservationDetailsInfoResponseDto> {
     return this.http.post<UserReservationDetailsInfoResponseDto>(this.url + '/details/info', userReservationDetailsInfoRequestDto);
+  }
+
+  public cancelUserReservation(reservationId: number): Observable<UserReservationCancellationResponseDto> {
+    return this.http.delete<UserReservationCancellationResponseDto>(this.url + '/id/' + reservationId + '/cancel');
   }
 
   public toUserReservationInfoListMapper(userReservationAllResponseDto: UserReservationAllResponseDto): UserReservationInfo[] {

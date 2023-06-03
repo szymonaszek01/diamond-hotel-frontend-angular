@@ -26,6 +26,7 @@ export class UserReservationDetailsPageComponent {
   }
 
   ngOnInit(): void {
+    this.busy = true;
     const token = this.authService.getItem('jwt');
     if (!token || this.authService.isTokenExpired(token)) {
       this.authService.logout();
@@ -36,7 +37,7 @@ export class UserReservationDetailsPageComponent {
     this.errorDto.message = "";
 
     this.activatedRoute.params.subscribe(params => {
-      const reservationId: number = Number.parseInt(params['id']);
+      const reservationId: number = Number.parseInt(params['reservationId']);
       this.getUserReservationDetails(reservationId);
     });
   }
@@ -48,20 +49,11 @@ export class UserReservationDetailsPageComponent {
     };
   }
 
-  private async getUserReservationDetails(reservationId: number) {
-    const userReservationDetailsInfoRequestDto: UserReservationDetailsInfoRequestDto = {
-      user_profile_id: Number.parseInt(this.authService.getItem("id") ?? "0"),
-      reservation_id: reservationId
-    }
+  public onButtonCancelClick(): void {
     this.busy = true;
-    this.reservationService.getUserReservationDetailsInfo(userReservationDetailsInfoRequestDto).subscribe(response => {
-      this.userReservationDetails = this.reservationService.toUserReservationDetailsMapper(response);
-      this.errorDto.result = true;
-      this.busy = false;
-    }, () => {
-      this.errorDto.result = false;
-      this.errorDto.message = "Reservation not found";
-      this.busy = false;
+    this.activatedRoute.params.subscribe(params => {
+      const reservationId: number = Number.parseInt(params['reservationId']);
+      this.deleteUserReservationDetailsInfo(reservationId);
     });
   }
 
@@ -133,5 +125,40 @@ export class UserReservationDetailsPageComponent {
         visibility: true
       }
     ];
+  }
+
+  private async getUserReservationDetails(reservationId: number) {
+    const userReservationDetailsInfoRequestDto: UserReservationDetailsInfoRequestDto = {
+      user_profile_id: Number.parseInt(this.authService.getItem("id") ?? "0"),
+      reservation_id: reservationId
+    }
+    this.busy = true;
+    this.reservationService.getUserReservationDetailsInfo(userReservationDetailsInfoRequestDto).subscribe(response => {
+      this.userReservationDetails = this.reservationService.toUserReservationDetailsMapper(response);
+      this.errorDto.result = true;
+      this.busy = false;
+    }, () => {
+      this.errorDto.result = false;
+      this.errorDto.message = "Reservation not found";
+      this.busy = false;
+    });
+  }
+
+  private deleteUserReservationDetailsInfo(reservationId: number) {
+    this.busy = true;
+    this.reservationService.cancelUserReservation(reservationId).subscribe(response => {
+      if (response.status == "CANCELLED") {
+        this.errorDto.result = true;
+        this.busy = false;
+        this.router.navigateByUrl('private/user/' + this.authService.getItem("id") + '/reservation/all');
+      } else {
+        this.errorDto.result = false;
+        this.errorDto.message = "Reservation not cancelled. Try again later.";
+      }
+    }, () => {
+      this.errorDto.result = false;
+      this.errorDto.message = "Reservation not found";
+      this.busy = false;
+    });
   }
 }

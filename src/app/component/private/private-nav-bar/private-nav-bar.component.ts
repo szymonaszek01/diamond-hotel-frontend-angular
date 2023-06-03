@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../service/AuthService';
 import {Router} from '@angular/router';
 
@@ -13,12 +13,22 @@ export class PrivateNavBarComponent implements OnInit {
 
   email: string;
 
+  homeLink: string;
+
+  accountLink: string;
+
+  reservationLink: string;
+
   constructor(private router: Router, private authService: AuthService) {
     const token = sessionStorage.getItem('jwt');
     if (!token || this.authService.isTokenExpired(token)) {
       this.authService.logout();
       this.router.navigateByUrl('login-page');
     }
+
+    this.homeLink = '/private/user/' + this.authService.getItem("id") + '/dashboard-page';
+    this.accountLink = '/private/user/' + this.authService.getItem("id") + '/details/info';
+    this.reservationLink = '/private/user/' + this.authService.getItem("id") + '/reservation/new/step/first';
 
     this.email = sessionStorage.getItem('email') ?? '';
     this.isMenuOpen = true;

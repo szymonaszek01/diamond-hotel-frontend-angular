@@ -10,7 +10,7 @@
   top: 0;
   left: 0;
   z-index: 99999;
-  background: rgba(45,43,43,0.78);
+  background: linear-gradient(60deg, $color_yellow_200 0%, $color_yellow_100 100%);
 }
 
 .wrap {
@@ -19,7 +19,7 @@
   left: 50%;
   -ms-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
-  color: $color_white;
+  color: $color_black_400;
   h1 {
     font-size: 0.85rem;
     text-space: 0.1rem;
@@ -34,7 +34,7 @@
   border-right-style: solid;
   border-right-width: thin;
   width: 100%;
-  border-right-color: $color_white;
+  border-right-color: $color_black_400;
   outline: none;
 }
 
@@ -44,7 +44,7 @@
 
 .bar {
   position: relative;
-  color: $color_white;
+  color: $color_black_400;
   height: 1.5vh;
   width: 30vw;
 

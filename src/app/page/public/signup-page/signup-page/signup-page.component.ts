@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {RegisterRequestDto} from '../../../../dto/auth/RegisterRequestDto';
+import {RegisterRequestDto} from '../../../../dto/user-profile/RegisterRequestDto';
 import {ErrorDto} from '../../../../dto/error/ErrorDto';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../../service/AuthService';
 import {UserProfileService} from '../../../../service/UserProfileService';
-import {UserProfileDetailsResponseDto} from "../../../../dto/auth/UserProfileDetailsResponseDto";
+import {UserProfileDetailsResponseDto} from "../../../../dto/user-profile/UserProfileDetailsResponseDto";
 
 @Component({
   selector: 'app-signup-page', templateUrl: './signup-page.component.html', styleUrls: ['./signup-page.component.scss']
@@ -161,7 +161,7 @@ export class SignupPageComponent implements OnInit {
   private onResponse(response: UserProfileDetailsResponseDto): void {
     this.busy = false;
     this.errorDto.result = true;
-    this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response.jwt, this.userProfileService.toUserProfileMapper(response));
-    this.router.navigateByUrl('private/user/dashboard-page');
+    this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response.jwt, this.userProfileService.toUserProfileMapper(response.user_profile));
+    this.router.navigateByUrl('private/user/' + this.authService.getItem("id") + '/dashboard-page');
   }
 }

@@ -49,6 +49,7 @@ export class UserReservationNewStepFirstPageComponent {
   }
 
   ngOnInit(): void {
+    this.busy = true;
     const token = this.authService.getItem('jwt');
     if (!token || this.authService.isTokenExpired(token)) {
       this.authService.logout();
@@ -74,8 +75,12 @@ export class UserReservationNewStepFirstPageComponent {
     }
   }
 
-  public onRoomTypeCapacitySelectOptionChanged(selectedOption: string) {
+  public onRoomTypeSelectOptionChanged(selectedOption: string) {
     this.availableRoomTypeListRequestDto.room_type_name = selectedOption;
+    this.getAvailableRoomTypeList();
+  }
+
+  public onCapacitySelectOptionChanged(selectedOption: string) {
     this.availableRoomTypeListRequestDto.capacity = selectedOption;
     this.getAvailableRoomTypeList();
   }
@@ -133,7 +138,7 @@ export class UserReservationNewStepFirstPageComponent {
         this.authService.saveShoppingCartDetailsResponseDtoInSessionStorage(this.roomTypeService.toShoppingCartModelMapper(response));
         this.busy = false;
         this.errorDto.result = true;
-        this.router.navigateByUrl('/private/user/reservation/new/step/second');
+        this.router.navigateByUrl('/private/user/' + this.authService.getItem("id") + '/reservation/new/step/second');
       }, () => {
         this.busy = false;
         this.errorDto.result = false;

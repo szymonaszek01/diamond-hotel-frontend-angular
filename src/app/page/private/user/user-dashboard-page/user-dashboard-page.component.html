@@ -6,7 +6,7 @@
     <div class="flow-col">
       <div class="flow-row">
         <div class="cards">
-          <app-common-card [title]="'Reservations'" [link]="'/private/user/reservation/all'" [button]="'get started'">
+          <app-common-card [title]="'Reservations'" [link]="this.reservationsLink" [button]="'get started'">
             <div class="body-container">
               <p class="info">Keep track of your upcoming stays and manage your reservations with ease.</p>
               <ul class="features">
@@ -40,9 +40,9 @@
               </ul>
             </div>
           </app-common-card>
-          <app-common-card [title]="'Service'" [link]="'#'" [button]="'get started'">
+          <app-common-card [title]="'Account'" [link]="this.accountLink" [button]="'get started'">
             <div class="body-container">
-              <p>Here, you can easily view and manage all of your booked hotel rooms in one convenient location.</p>
+              <p>Here, you can easily view all of your user profile details in one convenient location.</p>
               <ul class="features">
                 <li>
 					        <span class="icon">
@@ -51,7 +51,7 @@
 							        <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor"/>
 						        </svg>
 					        </span>
-                  <span>update room preferences</span>
+                  <span>change email</span>
                 </li>
                 <li>
 					        <span class="icon">
@@ -60,7 +60,7 @@
 							      <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor"/>
 						      </svg>
 					        </span>
-                  <span>special requests</span>
+                  <span>change password</span>
                 </li>
                 <li>
 					        <span class="icon">
@@ -69,7 +69,7 @@
 							      <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor"/>
 						      </svg>
 					        </span>
-                  <span>exclusive deals</span>
+                  <span>read details</span>
                 </li>
               </ul>
             </div>

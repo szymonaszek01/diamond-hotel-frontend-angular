@@ -22,6 +22,10 @@
       <span><strong>{{this.selectedRoomAmount}}</strong></span>
       <button (click)="this.onButtonMinus()"><strong>-</strong></button>
     </div>
+    <div *ngIf="!availableRoomType.available" class="col-add-remove bottom">
+      <ng-content select=".action">
+      </ng-content>
+    </div>
   </div>
   <div class="col-description">
     <div class="title">

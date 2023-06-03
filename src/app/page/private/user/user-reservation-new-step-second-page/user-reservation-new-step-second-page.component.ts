@@ -97,7 +97,7 @@ export class UserReservationNewStepSecondPageComponent {
 
   public routerGoToRoomSelection(): void {
     this.authService.removeItem('shoppingCartModel');
-    this.router.navigateByUrl('/private/user/reservation/new/step/first');
+    this.router.navigateByUrl('/private/user/' + this.authService.getItem("id") + '/reservation/new/step/first');
   }
 
   public pay(): void {
@@ -108,7 +108,7 @@ export class UserReservationNewStepSecondPageComponent {
     this.busy = true;
     this.shoppingCartModel.flightNumber = this.flightNumber;
     const userReservationNewRequestDto: UserReservationNewRequestDto = this.reservationService.toUserReservationNewRequestDtoMapper(this.shoppingCartModel);
-    this.reservationService.createNewReservation(userReservationNewRequestDto).subscribe(response => {
+    this.reservationService.createNewUserReservation(userReservationNewRequestDto).subscribe(response => {
       this.errorDto.result = true;
       this.busy = false;
       this.initializePayment(response.transaction_code, response.reservation_cost);
@@ -137,7 +137,7 @@ export class UserReservationNewStepSecondPageComponent {
     this.transactionService.changeTransactionStatus(transactionStatusInfoDto).subscribe(() => {
       this.busy = false;
       this.errorDto.result = true;
-      this.router.navigateByUrl('private/user/reservation/all');
+      this.router.navigateByUrl('/private/user/' + this.authService.getItem("id") + '/reservation/all');
     }, () => {
       this.busy = false;
       this.errorDto.result = false;
@@ -154,7 +154,7 @@ export class UserReservationNewStepSecondPageComponent {
     this.transactionService.changeTransactionStatus(transactionStatusInfoDto).subscribe(() => {
       this.busy = false;
       this.errorDto.result = true;
-      this.router.navigateByUrl('private/user/reservation/new/step/first');
+      this.router.navigateByUrl('/private/user/' + this.authService.getItem("id") + '/reservation/new/step/first');
     }, () => {
       this.busy = false;
       this.errorDto.result = false;

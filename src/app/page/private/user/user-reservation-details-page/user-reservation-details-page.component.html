@@ -3,7 +3,13 @@
   <app-private-nav-bar></app-private-nav-bar>
   <div class="main" [ngClass]="{ 'whole-page': !this.errorDto.result }">
     <div *ngIf="this.errorDto.result" class="flex flow-row">
-      <app-private-room-type-card [availableRoomType]="this.createAvailableRoomType()"></app-private-room-type-card>
+      <app-private-room-type-card [availableRoomType]="this.createAvailableRoomType()">
+        <div class="action">
+          <button class="btn btn-secondary" (click)="this.onButtonCancelClick()">
+            Cancel
+          </button>
+        </div>
+      </app-private-room-type-card>
     </div>
     <div *ngIf="!this.errorDto.result" class="flex flow-row">
       <app-common-toast [message]="this.errorDto.message ?? ''"></app-common-toast>

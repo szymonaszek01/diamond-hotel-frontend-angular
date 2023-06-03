@@ -9,6 +9,10 @@ import {AuthService} from '../../../../service/AuthService';
 })
 export class UserDashboardPageComponent implements OnInit {
 
+  reservationsLink: string = '';
+
+  accountLink: string = '';
+
   constructor(private router: Router, private authService: AuthService) {
   }
 
@@ -18,6 +22,9 @@ export class UserDashboardPageComponent implements OnInit {
       this.authService.logout();
       this.router.navigateByUrl('login-page');
     }
+
+    this.reservationsLink = '/private/user/' + this.authService.getItem("id") + '/reservation/all';
+    this.accountLink = '/private/user/' + this.authService.getItem("id") + '/details/info';
   }
 
 }
