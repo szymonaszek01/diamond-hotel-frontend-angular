@@ -1,0 +1,14 @@
+<div class="container">
+  <app-common-loading-data-window [message]="'loading'" [visibility]="this.busy"></app-common-loading-data-window>
+  <app-private-nav-bar></app-private-nav-bar>
+  <div class="main" [ngClass]="{ 'whole-page': !this.errorDto.result }">
+    <div *ngIf="!this.errorDto.result" class="flex flow-row">
+      <app-common-toast [message]="this.errorDto.message ?? ''"></app-common-toast>
+    </div>
+    <div *ngIf="this.errorDto.result" class="flex flow-row">
+      <app-common-details [title]="'User profile'"
+                          [detailList]="this.createUserProfileDetailList()"></app-common-details>
+    </div>
+  </div>
+  <app-common-footer></app-common-footer>
+</div>

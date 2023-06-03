@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ErrorDto} from '../dto/error/ErrorDto';
-import {UserProfile} from "../model/auth/UserProfile";
+import {UserProfile} from "../model/user-profile/UserProfile";
 import {ShoppingCartModel} from "../model/shopping-cart/ShoppingCartModel";
 
 @Injectable({

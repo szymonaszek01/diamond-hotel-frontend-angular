@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {LoginRequestDto} from '../dto/auth/LoginRequestDto';
+import {LoginRequestDto} from '../dto/user-profile/LoginRequestDto';
 import {Observable} from 'rxjs';
-import {UserProfileDetailsResponseDto} from '../dto/auth/UserProfileDetailsResponseDto';
+import {UserProfileDetailsResponseDto} from '../dto/user-profile/UserProfileDetailsResponseDto';
 import {HttpClient} from '@angular/common/http';
-import {RegisterRequestDto} from '../dto/auth/RegisterRequestDto';
-import {UserProfile} from "../model/auth/UserProfile";
+import {RegisterRequestDto} from '../dto/user-profile/RegisterRequestDto';
+import {UserProfile} from "../model/user-profile/UserProfile";
+import {UserProfileDto} from "../dto/user-profile/UserProfileDto";
 
 @Injectable({
   providedIn: 'root'
@@ -28,20 +29,24 @@ export class UserProfileService {
     return this.http.post<UserProfileDetailsResponseDto>(this.url + '/register', registerRequestDto);
   }
 
-  public toUserProfileMapper(response: UserProfileDetailsResponseDto): UserProfile {
+  public getUserProfileDetailsInfo(userProfileId: number): Observable<UserProfileDto> {
+    return this.http.get<UserProfileDto>(this.url + '/id/' + userProfileId + '/details/info');
+  }
+
+  public toUserProfileMapper(userProfileDto: UserProfileDto): UserProfile {
     return {
-      id: response.user_profile.id,
-      email: response.user_profile.email,
-      firstname: response.user_profile.firstname,
-      lastname: response.user_profile.lastname,
-      age: response.user_profile.age,
-      country: response.user_profile.country,
-      passportNumber: response.user_profile.passport_number,
-      phoneNumber: response.user_profile.phone_number,
-      city: response.user_profile.city,
-      street: response.user_profile.street,
-      postalCode: response.user_profile.postal_code,
-      role: response.user_profile.role
+      id: userProfileDto.id,
+      email: userProfileDto.email,
+      firstname: userProfileDto.firstname,
+      lastname: userProfileDto.lastname,
+      age: userProfileDto.age,
+      country: userProfileDto.country,
+      passportNumber: userProfileDto.passport_number,
+      phoneNumber: userProfileDto.phone_number,
+      city: userProfileDto.city,
+      street: userProfileDto.street,
+      postalCode: userProfileDto.postal_code,
+      role: userProfileDto.role
     };
   }
 }

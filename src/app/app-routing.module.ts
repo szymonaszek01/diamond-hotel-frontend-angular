@@ -16,17 +16,21 @@ import {
 import {
   UserReservationDetailsPageComponent
 } from "./page/private/user/user-reservation-details-page/user-reservation-details-page.component";
+import {
+  UserProfileDetailsPageComponent
+} from "./page/private/user/user-profile-details-page/user-profile-details-page.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home-page', pathMatch: 'full'},
   {path: 'home-page', component: HomePageComponent},
   {path: 'signup-page', component: SignupPageComponent},
   {path: 'login-page', component: LoginPageComponent},
-  {path: 'private/user/dashboard-page', component: UserDashboardPageComponent},
-  {path: 'private/user/reservation/new/step/first', component: UserReservationNewStepFirstPageComponent},
-  {path: 'private/user/reservation/new/step/second', component: UserReservationNewStepSecondPageComponent},
-  {path: 'private/user/reservation/all', component: UserReservationAllPageComponent},
-  {path: 'private/user/reservation/:id/details/info', component: UserReservationDetailsPageComponent}
+  {path: 'private/user/:userId/dashboard-page', component: UserDashboardPageComponent},
+  {path: 'private/user/:userId/details/info', component: UserProfileDetailsPageComponent},
+  {path: 'private/user/:userId/reservation/new/step/first', component: UserReservationNewStepFirstPageComponent},
+  {path: 'private/user/:userId/reservation/new/step/second', component: UserReservationNewStepSecondPageComponent},
+  {path: 'private/user/:userId/reservation/all', component: UserReservationAllPageComponent},
+  {path: 'private/user/:userId/reservation/:reservationId/details/info', component: UserReservationDetailsPageComponent}
 ];
 
 @NgModule({
