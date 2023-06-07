@@ -8,6 +8,7 @@ export interface UserReservationDetails {
   checkOut: string;
   roomCost: number;
   flightNumber: string;
+  email: string;
   roomType: RoomType;
   roomTypeOpinion: RoomTypeOpinion;
   room: Room;

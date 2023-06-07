@@ -5,5 +5,7 @@ export interface UserReservationInfo {
   checkIn: string;
   checkOut: string;
   capacity: number;
-  roomCost: number;
+  email: string;
+  roomNumber: number;
+  roomFloor: number;
 }

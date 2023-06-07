@@ -5,6 +5,7 @@ export interface UserReservationDetailsInfoResponseDto {
   check_out: string;
   room_cost: number;
   flight_number: string;
+  email: string;
   room_type: {
     id: number;
     name: string;

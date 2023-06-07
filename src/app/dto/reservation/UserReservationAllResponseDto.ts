@@ -7,6 +7,8 @@ export interface UserReservationAllResponseDto {
     check_in: string;
     check_out: string;
     capacity: number;
-    room_cost: number;
+    room_number: number;
+    room_floor: number;
+    email: string;
   }[];
 }
