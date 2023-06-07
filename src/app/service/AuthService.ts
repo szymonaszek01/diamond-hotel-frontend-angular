@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {ErrorDto} from '../dto/error/ErrorDto';
 import {UserProfile} from "../model/user-profile/UserProfile";
 import {ShoppingCartModel} from "../model/shopping-cart/ShoppingCartModel";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   public saveUserProfileDetailsResponseDtoInSessionStorage(jwt: string, userProfile: UserProfile): void {
@@ -44,6 +45,38 @@ export class AuthService {
     sessionStorage.clear();
   }
 
+  public onPageInit(pathOnSuccess: string | undefined, pathOnFailure: string | undefined): void {
+    const token = this.getItem('jwt');
+    if (!token || this.isTokenExpired(token)) {
+      this.logout();
+      if (pathOnFailure) {
+        this.navigateToPublicPage(pathOnFailure);
+      }
+    }
+
+    if (pathOnSuccess) {
+      this.navigateByRole(pathOnSuccess)
+    }
+  }
+
+  public navigateByRole(path: string) {
+    if (this.isUser()) {
+      this.navigateToUserProfilePage(path);
+    } else if (this.isAdmin()) {
+      this.navigateToAdminProfilePage(path);
+    } else {
+      this.navigateToPublicPage(path)
+    }
+  }
+
+  public isUser(): boolean {
+    return this.getItem("role") === "USER";
+  }
+
+  public isAdmin(): boolean {
+    return this.getItem("role") === "ADMIN";
+  }
+
   public isTokenExpired(token: string): boolean {
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
     return expiry * 1000 < Date.now();
@@ -71,5 +104,17 @@ export class AuthService {
     }
 
     return {result: true};
+  }
+
+  private navigateToPublicPage(path: string) {
+    this.router.navigateByUrl(path);
+  }
+
+  private navigateToUserProfilePage(path: string): void {
+    this.router.navigateByUrl("private/user/" + this.getItem("id") + path);
+  }
+
+  private navigateToAdminProfilePage(path: string): void {
+    this.router.navigateByUrl("private/admin/" + this.getItem("id") + path);
   }
 }

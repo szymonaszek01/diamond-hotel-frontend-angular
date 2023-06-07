@@ -33,6 +33,10 @@ export class UserProfileService {
     return this.http.get<UserProfileDto>(this.url + '/id/' + userProfileId + '/details/info');
   }
 
+  public getUserProfileInfoList(): Observable<UserProfileDto[]> {
+    return this.http.get<UserProfileDto[]>(this.url + '/all/info');
+  }
+
   public toUserProfileMapper(userProfileDto: UserProfileDto): UserProfile {
     return {
       id: userProfileDto.id,

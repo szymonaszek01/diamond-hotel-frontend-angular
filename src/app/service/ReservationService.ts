@@ -51,10 +51,12 @@ export class ReservationService {
         id: userReservationAllResponseDto.id,
         transactionCode: userReservationAllResponseDto.transaction_code,
         roomType: userReservationAllResponseDto.room_type_name,
+        email: userReservationAllResponseDto.email,
         checkIn: userReservationAllResponseDto.check_in,
         checkOut: userReservationAllResponseDto.check_out,
         capacity: userReservationAllResponseDto.capacity,
-        roomCost: userReservationAllResponseDto.room_cost
+        roomNumber: userReservationAllResponseDto.room_number,
+        roomFloor: userReservationAllResponseDto.room_floor
       }
     });
   }
@@ -86,6 +88,7 @@ export class ReservationService {
       checkOut: userReservationDetailsInfoResponseDto.check_out,
       roomCost: userReservationDetailsInfoResponseDto.room_cost,
       flightNumber: userReservationDetailsInfoResponseDto.flight_number,
+      email: userReservationDetailsInfoResponseDto.email,
       roomType: this.roomTypeService.toRoomTypeMapper(userReservationDetailsInfoResponseDto),
       roomTypeOpinion: this.roomTypeService.toRoomTypeOpinionMapper(userReservationDetailsInfoResponseDto),
       room: this.roomService.toRoomMapper(userReservationDetailsInfoResponseDto),
