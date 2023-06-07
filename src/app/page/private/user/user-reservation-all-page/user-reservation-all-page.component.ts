@@ -30,6 +30,8 @@ export class UserReservationAllPageComponent {
 
   busy: boolean = false;
 
+  tableData: Table = {} as Table;
+
   errorDto: ErrorDto = {} as ErrorDto;
 
   userReservationAllRequestDto: UserReservationAllRequestDto = {
@@ -43,12 +45,7 @@ export class UserReservationAllPageComponent {
   }
 
   ngOnInit(): void {
-    const token = this.authService.getItem('jwt');
-    if (!token || this.authService.isTokenExpired(token)) {
-      this.authService.logout();
-      this.router.navigateByUrl('login-page');
-    }
-
+    this.authService.onPageInit(undefined, "/login-page");
     this.busy = true;
     this.roomTypeConfigurationUtil.getRoomTypeConfigurationInfo().then(value => {
       this.roomTypeList = value.roomTypeList;
@@ -104,28 +101,49 @@ export class UserReservationAllPageComponent {
     this.getUserReservationList();
   }
 
-  public createTable(): Table {
+  public initTable(): Table {
+    let headerList: string[] = ["No", "Transaction", "Room type", "Check in", "Check out", "Room number"];
+    if (this.authService.isAdmin()) {
+      headerList.push("User");
+    }
+
     return {
-      headerList: ["No", "Transaction", "Room type", "Check in", "Check out", "Capacity", "Room cost"],
+      detailsBaseLink: "/reservation/",
+      headerList: headerList,
       rowList: this.toRowListMapper()
     };
+  }
+
+  public filterReservationListByValue(value: string): void {
+    if (value.length < 1) {
+      this.tableData.rowList = this.initTable().rowList;
+      return;
+    }
+
+    this.tableData.rowList = this.initTable().rowList.filter(row => {
+      return row.cellList.filter(cell => cell.toUpperCase().includes(value.toUpperCase())).length > 0;
+    });
   }
 
   private toRowListMapper(): Row[] {
     let counter: number = 1;
     let rowList: Row[] = [];
     this.userReservationInfoList.forEach(userReservationInfo => {
+      let cellList: string[] = [
+        userReservationInfo.transactionCode,
+        userReservationInfo.roomType,
+        userReservationInfo.checkIn,
+        userReservationInfo.checkOut,
+        userReservationInfo.roomNumber.toString()
+      ];
+      if (this.authService.isAdmin()) {
+        cellList.push(userReservationInfo.email);
+      }
+
       rowList.push({
         id: userReservationInfo.id,
         no: counter,
-        cellList: [
-          userReservationInfo.transactionCode,
-          userReservationInfo.roomType,
-          userReservationInfo.checkIn,
-          userReservationInfo.checkOut,
-          userReservationInfo.capacity.toString(),
-          userReservationInfo.roomCost + "€"
-        ]
+        cellList: cellList
       });
       counter++;
     });
@@ -141,6 +159,7 @@ export class UserReservationAllPageComponent {
         this.errorDto.result = false;
         this.errorDto.message = "Empty user reservation list";
       }
+      this.tableData = this.initTable();
       this.busy = false;
     }, () => {
       this.errorDto.result = false;

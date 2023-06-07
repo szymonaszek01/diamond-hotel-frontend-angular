@@ -17,14 +17,9 @@ export class UserDashboardPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = sessionStorage.getItem('jwt');
-    if (!token || this.authService.isTokenExpired(token)) {
-      this.authService.logout();
-      this.router.navigateByUrl('login-page');
-    }
+    this.authService.onPageInit(undefined, "/login-page")
 
-    this.reservationsLink = '/private/user/' + this.authService.getItem("id") + '/reservation/all';
-    this.accountLink = '/private/user/' + this.authService.getItem("id") + '/details/info';
+    this.reservationsLink = '/reservation/all';
+    this.accountLink = '/details/info';
   }
-
 }

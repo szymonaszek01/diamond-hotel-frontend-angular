@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Router} from "@angular/router";
+import {AuthService} from "../../../service/AuthService";
 
 @Component({
   selector: 'app-common-card',
@@ -17,13 +18,13 @@ export class CommonCardComponentComponent {
   @Input()
   public button: string = '';
 
-  constructor(private router: Router) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
   }
 
   public routerGo() {
-    this.router.navigate([this.link]);
+    this.authService.navigateByRole(this.link);
   }
 }

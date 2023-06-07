@@ -40,10 +40,15 @@ import {
 import {
   UserReservationAllPageComponent
 } from './page/private/user/user-reservation-all-page/user-reservation-all-page.component';
-import { UserReservationDetailsPageComponent } from './page/private/user/user-reservation-details-page/user-reservation-details-page.component';
-import { CommonTableComponent } from './component/common/common-table/common-table.component';
-import { CommonDetailsComponent } from './component/common/common-details/common-details.component';
-import { UserProfileDetailsPageComponent } from './page/private/user/user-profile-details-page/user-profile-details-page.component';
+import {
+  UserReservationDetailsPageComponent
+} from './page/private/user/user-reservation-details-page/user-reservation-details-page.component';
+import {CommonTableComponent} from './component/common/common-table/common-table.component';
+import {CommonDetailsComponent} from './component/common/common-details/common-details.component';
+import {
+  UserProfileDetailsPageComponent
+} from './page/private/user/user-profile-details-page/user-profile-details-page.component';
+import {UserProfileAllPageComponent} from "./page/private/user/user-profile-all-page/user-profile-all-page.component";
 
 @NgModule({
   declarations: [
@@ -69,7 +74,8 @@ import { UserProfileDetailsPageComponent } from './page/private/user/user-profil
     UserReservationDetailsPageComponent,
     CommonTableComponent,
     CommonDetailsComponent,
-    UserProfileDetailsPageComponent
+    UserProfileDetailsPageComponent,
+    UserProfileAllPageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../service/AuthService';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-private-nav-bar',
@@ -19,16 +18,15 @@ export class PrivateNavBarComponent implements OnInit {
 
   reservationLink: string;
 
-  constructor(private router: Router, private authService: AuthService) {
-    const token = sessionStorage.getItem('jwt');
-    if (!token || this.authService.isTokenExpired(token)) {
-      this.authService.logout();
-      this.router.navigateByUrl('login-page');
-    }
+  userProfilesLink: string;
 
-    this.homeLink = '/private/user/' + this.authService.getItem("id") + '/dashboard-page';
-    this.accountLink = '/private/user/' + this.authService.getItem("id") + '/details/info';
-    this.reservationLink = '/private/user/' + this.authService.getItem("id") + '/reservation/new/step/first';
+  constructor(private authService: AuthService) {
+    this.authService.onPageInit(undefined, "/login-page");
+
+    this.homeLink = '/dashboard-page';
+    this.accountLink = '/details/info';
+    this.reservationLink = '/reservation/new/step/first';
+    this.userProfilesLink = '/user-profile/all';
 
     this.email = sessionStorage.getItem('email') ?? '';
     this.isMenuOpen = true;
@@ -41,9 +39,21 @@ export class PrivateNavBarComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
+  public routerGo(path: string): void {
+    this.authService.navigateByRole(path);
+  }
+
+  public isUser(): boolean {
+    return this.authService.isUser();
+  }
+
+  public isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
   public async signOut(): Promise<void> {
     this.authService.logout();
-    await this.router.navigateByUrl('/');
+    this.authService.navigateByRole("/");
     await new Promise(f => setTimeout(f, 100));
     window.location.reload();
   }

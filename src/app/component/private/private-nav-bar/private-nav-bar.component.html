@@ -3,17 +3,18 @@
     <div class="flex flow-row space-between">
       <li class="menu">
         <div class="logotype">
-          <a href="{{this.homeLink}}"><img src="/assets/images/logotype.png" alt="logotype"></a>
+          <a (click)="this.routerGo(this.homeLink)"><img src="/assets/images/logotype.png" alt="logotype"></a>
         </div>
-        <a routerLink="/private/user/dashboard-page" class="menu-item">{{this.email}}</a>
+        <a (click)="this.routerGo(this.accountLink)" class="menu-item">{{this.email}}</a>
       </li>
       <li class="burger" (click)="toggleMenu()">
         <a>&#9776;</a>
       </li>
       <li class="menu" [class.is-open]="isMenuOpen">
-        <a routerLink="{{this.homeLink}}" class="menu-item">Home</a>
-        <a routerLink="{{this.accountLink}}" class="menu-item">ACCOUNT</a>
-        <a routerLink="{{this.reservationLink}}" class="menu-item">Reservation</a>
+        <a (click)="this.routerGo(this.homeLink)" class="menu-item">Home</a>
+        <a (click)="this.routerGo(this.accountLink)" class="menu-item">Account</a>
+        <a *ngIf="this.isUser()" (click)="this.routerGo(this.reservationLink)" class="menu-item">Reservation</a>
+        <a *ngIf="this.isAdmin()" (click)="this.routerGo(this.userProfilesLink)" class="menu-item">User Profiles</a>
         <a class="menu-item emphasis" (click)="this.signOut()">Sign out</a>
       </li>
     </div>

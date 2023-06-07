@@ -40,11 +40,10 @@ export class UserReservationNewStepSecondPageComponent {
   }
 
   ngOnInit(): void {
-    const token = this.authService.getItem('jwt');
+    this.authService.onPageInit(undefined, "/login-page");
     const shoppingCartModel = this.authService.getItem('shoppingCartModel')
-    if (!token || this.authService.isTokenExpired(token) || !shoppingCartModel) {
-      this.authService.logout();
-      this.router.navigateByUrl('login-page');
+    if (!shoppingCartModel) {
+      this.authService.navigateByRole('/reservation/new/step/first');
     } else {
       this.shoppingCartModel = JSON.parse(shoppingCartModel);
       this.shoppingCartModel.roomTypeSummaryInfo.forEach(roomTypeSummaryInfo => this.shoppingCart += roomTypeSummaryInfo.roomTypeCardData.amount);
@@ -97,7 +96,7 @@ export class UserReservationNewStepSecondPageComponent {
 
   public routerGoToRoomSelection(): void {
     this.authService.removeItem('shoppingCartModel');
-    this.router.navigateByUrl('/private/user/' + this.authService.getItem("id") + '/reservation/new/step/first');
+    this.authService.navigateByRole('/reservation/new/step/first');
   }
 
   public pay(): void {
@@ -137,7 +136,7 @@ export class UserReservationNewStepSecondPageComponent {
     this.transactionService.changeTransactionStatus(transactionStatusInfoDto).subscribe(() => {
       this.busy = false;
       this.errorDto.result = true;
-      this.router.navigateByUrl('/private/user/' + this.authService.getItem("id") + '/reservation/all');
+      this.authService.navigateByRole('/reservation/all');
     }, () => {
       this.busy = false;
       this.errorDto.result = false;
@@ -154,7 +153,7 @@ export class UserReservationNewStepSecondPageComponent {
     this.transactionService.changeTransactionStatus(transactionStatusInfoDto).subscribe(() => {
       this.busy = false;
       this.errorDto.result = true;
-      this.router.navigateByUrl('/private/user/' + this.authService.getItem("id") + '/reservation/new/step/first');
+      this.authService.navigateByRole('/reservation/new/step/first');
     }, () => {
       this.busy = false;
       this.errorDto.result = false;

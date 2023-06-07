@@ -26,15 +26,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = this.authService.getItem('jwt');
-    if (token) {
-      if (this.authService.isTokenExpired(token)) {
-        this.authService.logout();
-        this.router.navigateByUrl('login-page');
-      } else {
-        this.router.navigateByUrl('private/user/' + this.authService.getItem("id") + '/dashboard-page').then(() => window.location.reload());
-      }
-    }
+    this.authService.onPageInit("/dashboard-page", undefined);
   }
 
   public async login(): Promise<void> {
@@ -69,6 +61,6 @@ export class LoginPageComponent implements OnInit {
     this.busy = false;
     this.errorDto.result = true;
     this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response.jwt, this.userProfileService.toUserProfileMapper(response.user_profile));
-    this.router.navigateByUrl('private/user/' + this.authService.getItem("id") + '/dashboard-page');
+    this.authService.navigateByRole("/dashboard-page");
   }
 }

@@ -21,6 +21,6 @@ export class CommonTableComponent {
   }
 
   public onRowClicked(row: Row) {
-    this.router.navigateByUrl('/private/user/' + this.authService.getItem("id") + '/reservation/' + row.id + '/details/info');
+    this.authService.navigateByRole(this.table.detailsBaseLink + row.id + '/details/info');
   }
 }

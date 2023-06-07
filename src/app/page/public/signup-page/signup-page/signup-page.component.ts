@@ -162,6 +162,6 @@ export class SignupPageComponent implements OnInit {
     this.busy = false;
     this.errorDto.result = true;
     this.authService.saveUserProfileDetailsResponseDtoInSessionStorage(response.jwt, this.userProfileService.toUserProfileMapper(response.user_profile));
-    this.router.navigateByUrl('private/user/' + this.authService.getItem("id") + '/dashboard-page');
+    this.authService.navigateByRole("/dashboard-page");
   }
 }

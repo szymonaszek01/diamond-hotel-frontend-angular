@@ -26,8 +26,11 @@
       </div>
       <div class="flex flow-col col-large">
         <div class="flex flow-row">
+          <app-common-input-search *ngIf="errorDto.result" (valueChanged)="this.filterReservationListByValue($event)"></app-common-input-search>
+        </div>
+        <div class="flex flow-row">
           <app-common-toast *ngIf="!this.errorDto.result" [message]="this.errorDto.message ?? ''"></app-common-toast>
-          <app-common-table *ngIf="this.errorDto.result" [table]="this.createTable()"></app-common-table>
+          <app-common-table *ngIf="this.errorDto.result" [table]="this.tableData"></app-common-table>
         </div>
       </div>
     </div>

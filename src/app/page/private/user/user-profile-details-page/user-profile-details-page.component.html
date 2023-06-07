@@ -2,12 +2,25 @@
   <app-common-loading-data-window [message]="'loading'" [visibility]="this.busy"></app-common-loading-data-window>
   <app-private-nav-bar></app-private-nav-bar>
   <div class="main" [ngClass]="{ 'whole-page': !this.errorDto.result }">
+    <div class="flex flow-row">
+      <div class="summary">
+        <span>Account summary</span>
+      </div>
+    </div>
     <div *ngIf="!this.errorDto.result" class="flex flow-row">
       <app-common-toast [message]="this.errorDto.message ?? ''"></app-common-toast>
     </div>
     <div *ngIf="this.errorDto.result" class="flex flow-row">
-      <app-common-details [title]="'User profile'"
-                          [detailList]="this.createUserProfileDetailList()"></app-common-details>
+      <app-common-details [title]="'Account data'"
+                          [detailList]="this.createAccountDetailList()"></app-common-details>
+    </div>
+    <div *ngIf="this.errorDto.result" class="flex flow-row">
+      <app-common-details [title]="'Personal data'"
+                          [detailList]="this.createPersonalDetailList()"></app-common-details>
+    </div>
+    <div *ngIf="this.errorDto.result" class="flex flow-row">
+      <app-common-details [title]="'Residence data'"
+                          [detailList]="this.createResidenceDetailList()"></app-common-details>
     </div>
   </div>
   <app-common-footer></app-common-footer>

@@ -44,17 +44,13 @@ export class UserReservationNewStepFirstPageComponent {
 
   private roomTypeCardDataList: RoomTypeCardData[] = [];
 
-  constructor(public dateUtil: DateUtil, private router: Router, private authService: AuthService,
+  constructor(public dateUtil: DateUtil, private authService: AuthService,
               private roomTypeService: RoomTypeService, private roomTypeConfigurationUtil: RoomTypeConfigurationUtil) {
   }
 
   ngOnInit(): void {
     this.busy = true;
-    const token = this.authService.getItem('jwt');
-    if (!token || this.authService.isTokenExpired(token)) {
-      this.authService.logout();
-      this.router.navigateByUrl('login-page');
-    }
+    this.authService.onPageInit(undefined, "/login-page");
 
     this.roomTypeConfigurationUtil.getRoomTypeConfigurationInfo().then(value => {
       this.roomTypeList = value.roomTypeList;
@@ -138,7 +134,7 @@ export class UserReservationNewStepFirstPageComponent {
         this.authService.saveShoppingCartDetailsResponseDtoInSessionStorage(this.roomTypeService.toShoppingCartModelMapper(response));
         this.busy = false;
         this.errorDto.result = true;
-        this.router.navigateByUrl('/private/user/' + this.authService.getItem("id") + '/reservation/new/step/second');
+        this.authService.navigateByRole('/reservation/new/step/second');
       }, () => {
         this.busy = false;
         this.errorDto.result = false;

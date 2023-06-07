@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-common-input-search',
@@ -9,6 +9,9 @@ export class CommonInputSearchComponentComponent {
 
   @Input()
   public placeholder: string = 'Type something...';
+
+  @Output()
+  public valueChanged: EventEmitter<string> = new EventEmitter<string>();
 
   public isIconSearchActive: boolean = true;
 
@@ -25,12 +28,16 @@ export class CommonInputSearchComponentComponent {
     if (this.isIconSearchActive || this.inputValue.length === 0) {
       this.isIconSearchActive = !this.isIconSearchActive;
     }
+
+    this.valueChanged.emit(this.inputValue);
   }
 
   public changeStateOnClick(): void {
     if (!this.isIconSearchActive && this.inputValue.length > 0) {
       this.isIconSearchActive = !this.isIconSearchActive;
       this.inputValue = '';
+
+      this.valueChanged.emit(this.inputValue);
     }
   }
 

@@ -19,18 +19,25 @@ import {
 import {
   UserProfileDetailsPageComponent
 } from "./page/private/user/user-profile-details-page/user-profile-details-page.component";
+import {UserProfileAllPageComponent} from "./page/private/user/user-profile-all-page/user-profile-all-page.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home-page', pathMatch: 'full'},
   {path: 'home-page', component: HomePageComponent},
   {path: 'signup-page', component: SignupPageComponent},
   {path: 'login-page', component: LoginPageComponent},
-  {path: 'private/user/:userId/dashboard-page', component: UserDashboardPageComponent},
-  {path: 'private/user/:userId/details/info', component: UserProfileDetailsPageComponent},
-  {path: 'private/user/:userId/reservation/new/step/first', component: UserReservationNewStepFirstPageComponent},
-  {path: 'private/user/:userId/reservation/new/step/second', component: UserReservationNewStepSecondPageComponent},
-  {path: 'private/user/:userId/reservation/all', component: UserReservationAllPageComponent},
-  {path: 'private/user/:userId/reservation/:reservationId/details/info', component: UserReservationDetailsPageComponent}
+  {path: 'private/user/:user-id/dashboard-page', component: UserDashboardPageComponent},
+  {path: 'private/user/:user-id/details/info', component: UserProfileDetailsPageComponent},
+  {path: 'private/user/:user-id/reservation/new/step/first', component: UserReservationNewStepFirstPageComponent},
+  {path: 'private/user/:user-id/reservation/new/step/second', component: UserReservationNewStepSecondPageComponent},
+  {path: 'private/user/:user-id/reservation/all', component: UserReservationAllPageComponent},
+  {path: 'private/user/:user-id/reservation/:reservation-id/details/info', component: UserReservationDetailsPageComponent},
+  {path: 'private/admin/:admin-id/dashboard-page', component: UserDashboardPageComponent},
+  {path: 'private/admin/:admin-id/details/info', component: UserProfileDetailsPageComponent},
+  {path: 'private/admin/:admin-id/user-profile/all', component: UserProfileAllPageComponent},
+  {path: 'private/admin/:admin-id/user-profile/:user-profile-id/details/info', component: UserProfileDetailsPageComponent},
+  {path: 'private/admin/:admin-id/reservation/all', component: UserReservationAllPageComponent},
+  {path: 'private/admin/:admin-id/reservation/:reservation-id/details/info', component: UserReservationDetailsPageComponent}
 ];
 
 @NgModule({

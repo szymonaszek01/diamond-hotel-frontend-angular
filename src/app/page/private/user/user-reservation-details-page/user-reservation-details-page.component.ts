@@ -37,7 +37,7 @@ export class UserReservationDetailsPageComponent {
     this.errorDto.message = "";
 
     this.activatedRoute.params.subscribe(params => {
-      const reservationId: number = Number.parseInt(params['reservationId']);
+      const reservationId: number = Number.parseInt(params['reservation-id']);
       this.getUserReservationDetails(reservationId);
     });
   }
@@ -59,6 +59,11 @@ export class UserReservationDetailsPageComponent {
 
   public createReservationDetailList(): Detail[] {
     return [
+      {
+        label: "User",
+        value: this.userReservationDetails.email,
+        visibility: this.authService.isAdmin()
+      },
       {
         label: "Check in",
         value: this.userReservationDetails.checkIn,
