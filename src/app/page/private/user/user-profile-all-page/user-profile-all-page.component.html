@@ -1,0 +1,20 @@
+<div class="container">
+  <app-common-loading-data-window [message]="'loading'" [visibility]="this.busy"></app-common-loading-data-window>
+  <app-private-nav-bar></app-private-nav-bar>
+  <div class="main">
+    <div class="flex flow-row">
+      <div class="summary">
+        <span>User profile list</span>
+      </div>
+    </div>
+    <div class="flex flow-row">
+      <div class="flex flow-row">
+        <app-common-input-search (valueChanged)="this.filterUserProfileListByValue($event)"></app-common-input-search>
+      </div>
+      <div class="flex flow-row">
+        <app-common-table [table]="this.tableData"></app-common-table>
+      </div>
+    </div>
+  </div>
+  <app-common-footer></app-common-footer>
+</div>
