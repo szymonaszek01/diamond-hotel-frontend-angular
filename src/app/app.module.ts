@@ -49,6 +49,9 @@ import {
   UserProfileDetailsPageComponent
 } from './page/private/user/user-profile-details-page/user-profile-details-page.component';
 import {UserProfileAllPageComponent} from "./page/private/user/user-profile-all-page/user-profile-all-page.component";
+import { CommonModalComponent } from './component/common/common-modal/common-modal.component';
+import { ContactPageComponent } from './page/public/contact-page/contact-page.component';
+import { OfferPageComponent } from './page/public/offer-page/offer-page.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,10 @@ import {UserProfileAllPageComponent} from "./page/private/user/user-profile-all-
     CommonTableComponent,
     CommonDetailsComponent,
     UserProfileDetailsPageComponent,
-    UserProfileAllPageComponent
+    UserProfileAllPageComponent,
+    CommonModalComponent,
+    ContactPageComponent,
+    OfferPageComponent
   ],
   imports: [
     BrowserModule,

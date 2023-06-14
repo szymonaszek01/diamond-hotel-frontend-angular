@@ -1,0 +1,55 @@
+<app-public-nav-bar></app-public-nav-bar>
+<app-public-animated-background>
+  <div class="container">
+    <div class="form">
+      <div class="left">
+        <h2>Get in touch</h2>
+        <div class="row">
+          <input [ngClass]="{'error': !this.errorDto.result}" type="text" placeholder="Firstname"
+                 [(ngModel)]="this.messageDto.firstname" (input)="this.onInputChange()"/>
+          <input [ngClass]="{'error': !this.errorDto.result}" type="text" placeholder="Lastname"
+                 [(ngModel)]="this.messageDto.lastname" (input)="this.onInputChange()"/>
+        </div>
+        <div class="row">
+          <input [ngClass]="{'error': !this.errorDto.result}" type="text" placeholder="Email"
+                 [(ngModel)]="this.messageDto.email" (input)="this.onInputChange()"/>
+        </div>
+        <div class="row">
+          <textarea id="message" placeholder="Message"
+                    [(ngModel)]="this.messageDto.message"></textarea>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary" (click)="this.onSendMessageClick()">Send message</button>
+        </div>
+      </div>
+      <div class="right">
+        <h2>Contact us</h2>
+        <div>
+          <div class="img-container">
+            <img src="assets/icons/navigation.png" alt="address"/>
+          </div>
+          <span>MALDIVES, MALÉ ATOLL</span>
+        </div>
+        <div>
+          <div class="img-container">
+            <img src="assets/icons/phone.png" alt="address"/>
+          </div>
+          <span>+48 881 942 234</span>
+        </div>
+        <div>
+          <div class="img-container">
+            <img src="assets/icons/envelope.png" alt="address"/>
+          </div>
+          <span>DIAMOND.HOTEL@GMAIL.CO</span>
+        </div>
+        <div>
+          <div class="img-container">
+            <img src="assets/icons/web.png" alt="address"/>
+          </div>
+          <a href="https://diamond-hotel-frontend.vercel.app/home-page">diamond.hotel.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-public-animated-background>
+<app-common-footer></app-common-footer>

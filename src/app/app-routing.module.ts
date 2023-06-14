@@ -20,12 +20,16 @@ import {
   UserProfileDetailsPageComponent
 } from "./page/private/user/user-profile-details-page/user-profile-details-page.component";
 import {UserProfileAllPageComponent} from "./page/private/user/user-profile-all-page/user-profile-all-page.component";
+import {ContactPageComponent} from "./page/public/contact-page/contact-page.component";
+import {OfferPageComponent} from "./page/public/offer-page/offer-page.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home-page', pathMatch: 'full'},
   {path: 'home-page', component: HomePageComponent},
   {path: 'signup-page', component: SignupPageComponent},
   {path: 'login-page', component: LoginPageComponent},
+  {path: 'contact-page', component: ContactPageComponent},
+  {path: 'offer-page', component: OfferPageComponent},
   {path: 'private/user/:user-id/dashboard-page', component: UserDashboardPageComponent},
   {path: 'private/user/:user-id/details/info', component: UserProfileDetailsPageComponent},
   {path: 'private/user/:user-id/reservation/new/step/first', component: UserReservationNewStepFirstPageComponent},

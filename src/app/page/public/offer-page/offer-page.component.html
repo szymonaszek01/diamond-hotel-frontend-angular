@@ -1,0 +1,48 @@
+<app-common-loading-data-window [message]="'loading'" [visibility]="this.busy"></app-common-loading-data-window>
+<app-public-nav-bar></app-public-nav-bar>
+<app-public-animated-background>
+  <div class="container">
+    <div class="arrow">
+      <img (click)="this.onArrowLeftClick()" src="assets/icons/arrow-left.png" alt="left-arrow"/>
+    </div>
+    <div class="form">
+      <div class="left">
+        <h2>{{this.roomTypeOfferDto?.room_type_list?.at(this.index)?.name}}</h2>
+        <div class="span-container">
+          <span>Rate</span>
+          <span><strong>{{this.roomTypeOfferDto?.room_type_list?.at(this.index)?.opinion?.opinion_summary_rate?.toFixed(1)}}</strong></span>
+        </div>
+        <div class="span-container">
+          <span>Opinion</span>
+          <span><strong>{{this.roomTypeOfferDto?.room_type_list?.at(this.index)?.opinion?.opinion_summary_text}}</strong></span>
+        </div>
+        <div class="span-container">
+          <span>Number of opinions</span>
+          <span><strong>{{this.roomTypeOfferDto?.room_type_list?.at(this.index)?.opinion?.opinion_amount}}</strong></span>
+        </div>
+        <div class="span-container">
+          <span>Capacity</span>
+          <span><strong>{{this.roomTypeOfferDto?.room_type_list?.at(this.index)?.capacity}}</strong></span>
+        </div>
+        <div class="span-container">
+          <span>Price</span>
+          <span><strong>{{this.roomTypeOfferDto?.room_type_list?.at(this.index)?.price_per_hotel_night}}€</strong></span>
+        </div>
+        <div class="span-container">
+          <span>Equipment</span>
+          <div class="equipment">
+            <span *ngFor="let equipment of this.roomTypeOfferDto?.room_type_list?.at(this.index)?.equipment_list; let last = last"><strong>{{equipment}}{{!last ? ',' : ''}} </strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="overlay"></div>
+        <img src="{{this.roomTypeOfferDto?.room_type_list?.at(this.index)?.image}}" alt="room-type">
+      </div>
+    </div>
+    <div class="arrow">
+      <img (click)="this.onArrowRightClick()" src="assets/icons/arrow-right.png" alt="right-arrow"/>
+    </div>
+  </div>
+</app-public-animated-background>
+<app-common-footer></app-common-footer>
