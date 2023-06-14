@@ -4,21 +4,15 @@
   background: linear-gradient(60deg, $color_yellow_200 0%, $color_yellow_100 100%);
 
   .main {
-    padding: 3rem 17rem 3rem 17rem;
+    padding: 0 7rem 3rem 7rem;
     @media (max-width: 1238px) {
       width: 100%;
       padding: 0;
     }
   }
 
-  .action {
-    position: absolute;
-    bottom: 0;
-    padding: 1rem 0;
-
-    @media (max-width: 820px) {
-      position: relative;
-    }
+  .summary {
+    margin-bottom: 3rem;
   }
 
   .whole-page {

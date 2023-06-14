@@ -1,10 +1,15 @@
 <div class="container">
   <app-common-loading-data-window [message]="'loading'" [visibility]="this.busy"></app-common-loading-data-window>
+  <app-common-modal [title]="'Delete user'" [body]="'Do you want to remove user? The \'' + this.userProfileDetails.email
+    + '\' account will be permanently deleted.'" [active]="this.modal" (result)="this.onModalResult($event)"></app-common-modal>
   <app-private-nav-bar></app-private-nav-bar>
   <div class="main" [ngClass]="{ 'whole-page': !this.errorDto.result }">
     <div class="flex flow-row">
       <div class="summary">
         <span>Account summary</span>
+        <div *ngIf="this.isAdminOnUserAccount" class="thrash" (click)="this.onIconDeleteClick()">
+          <img src="assets/icons/thrash.png" alt="thrash">
+        </div>
       </div>
     </div>
     <div *ngIf="!this.errorDto.result" class="flex flow-row">

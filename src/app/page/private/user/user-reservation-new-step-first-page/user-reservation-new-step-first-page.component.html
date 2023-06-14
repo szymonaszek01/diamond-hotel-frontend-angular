@@ -32,7 +32,8 @@
         <app-common-toast *ngIf="!this.errorDto.result" [message]="this.errorDto.message ?? ''"></app-common-toast>
         <app-private-room-type-card *ngFor="let availableRoomType of this.availableRoomTypeList"
                                     (cardChanged)="this.onShoppingCartOptionChanged($event)"
-                                    [availableRoomType]="availableRoomType"></app-private-room-type-card>
+                                    [availableRoomType]="availableRoomType"
+                                    [readonly]="false"></app-private-room-type-card>
       </div>
     </div>
   </div>

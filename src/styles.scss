@@ -572,6 +572,17 @@ tr {
   }
 }
 
+.thrash {
+  padding: 0;
+  cursor: auto;
+
+  img {
+    width: 1.7rem;
+    height: auto;
+    cursor: pointer;
+  }
+}
+
 .border-none {
   border-bottom: none;
 }

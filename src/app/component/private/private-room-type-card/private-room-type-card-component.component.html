@@ -14,15 +14,15 @@
       <span><strong>{{this.availableRoomType.roomType.pricePerHotelNight}}€</strong></span>
     </div>
     <div class="col-left-data">
-      <span>{{this.availableRoomType.available ? 'Available' : 'Selected'}}</span>
-      <span><strong>{{this.availableRoomType.available ? this.availableRoomType.available.toString() : '1'}}</strong></span>
+      <span>{{!this.readonly ? 'Available' : 'Selected'}}</span>
+      <span><strong>{{!this.readonly ? this.availableRoomType.available?.toString() : '1'}}</strong></span>
     </div>
-    <div *ngIf="availableRoomType.available" class="col-add-remove">
+    <div *ngIf="!this.readonly" class="col-add-remove">
       <button (click)="this.onButtonPlus()"><strong>+</strong></button>
       <span><strong>{{this.selectedRoomAmount}}</strong></span>
       <button (click)="this.onButtonMinus()"><strong>-</strong></button>
     </div>
-    <div *ngIf="!availableRoomType.available" class="col-add-remove bottom">
+    <div *ngIf="this.readonly" class="col-add-remove bottom">
       <ng-content select=".action">
       </ng-content>
     </div>

@@ -19,6 +19,8 @@ export class UserReservationDetailsPageComponent {
 
   userReservationDetails: UserReservationDetails = {} as UserReservationDetails;
 
+  modal: boolean = false;
+
   errorDto: ErrorDto = {} as ErrorDto;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private authService: AuthService,
@@ -42,19 +44,28 @@ export class UserReservationDetailsPageComponent {
     });
   }
 
+  public onIconDeleteClick(): void {
+    this.modal = true;
+  }
+
+  public onModalResult(value: string): void {
+    this.modal = false;
+    if (value == 'No') {
+      return;
+    }
+
+    this.busy = true;
+    this.activatedRoute.params.subscribe(params => {
+      const reservationId: number = Number.parseInt(params['reservation-id']);
+      this.deleteUserReservationDetailsInfo(reservationId);
+    });
+  }
+
   public createAvailableRoomType(): AvailableRoomType {
     return {
       roomType: this.userReservationDetails.roomType,
       roomTypeOpinion: this.userReservationDetails.roomTypeOpinion
     };
-  }
-
-  public onButtonCancelClick(): void {
-    this.busy = true;
-    this.activatedRoute.params.subscribe(params => {
-      const reservationId: number = Number.parseInt(params['reservationId']);
-      this.deleteUserReservationDetailsInfo(reservationId);
-    });
   }
 
   public createReservationDetailList(): Detail[] {
@@ -66,12 +77,12 @@ export class UserReservationDetailsPageComponent {
       },
       {
         label: "Check in",
-        value: this.userReservationDetails.checkIn,
+        value: this.userReservationDetails.checkIn.slice(0, 16),
         visibility: true
       },
       {
         label: "Check out",
-        value: this.userReservationDetails.checkOut,
+        value: this.userReservationDetails.checkOut.slice(0, 16),
         visibility: true
       },
       {

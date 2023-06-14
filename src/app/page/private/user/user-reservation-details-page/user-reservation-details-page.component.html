@@ -1,14 +1,19 @@
 <div class="container">
   <app-common-loading-data-window [message]="'loading'" [visibility]="this.busy"></app-common-loading-data-window>
+  <app-common-modal [title]="'Cancel room'" [body]="'Do you want to cancel room? The \'' + this.userReservationDetails.room.roomNumber
+    + '\' room will be permanently deleted from your reservation.'" [active]="this.modal" (result)="this.onModalResult($event)"></app-common-modal>
   <app-private-nav-bar></app-private-nav-bar>
   <div class="main" [ngClass]="{ 'whole-page': !this.errorDto.result }">
+    <div class="flex flow-row">
+      <div class="summary">
+        <span>Reservation details</span>
+        <div class="thrash" (click)="this.onIconDeleteClick()">
+          <img src="assets/icons/thrash.png" alt="thrash">
+        </div>
+      </div>
+    </div>
     <div *ngIf="this.errorDto.result" class="flex flow-row">
       <app-private-room-type-card [availableRoomType]="this.createAvailableRoomType()">
-        <div class="action">
-          <button class="btn btn-secondary" (click)="this.onButtonCancelClick()">
-            Cancel
-          </button>
-        </div>
       </app-private-room-type-card>
     </div>
     <div *ngIf="!this.errorDto.result" class="flex flow-row">

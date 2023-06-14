@@ -132,8 +132,8 @@ export class UserReservationAllPageComponent {
       let cellList: string[] = [
         userReservationInfo.transactionCode,
         userReservationInfo.roomType,
-        userReservationInfo.checkIn,
-        userReservationInfo.checkOut,
+        userReservationInfo.checkIn.slice(0, 16),
+        userReservationInfo.checkOut.slice(0, 16),
         userReservationInfo.roomNumber.toString()
       ];
       if (this.authService.isAdmin()) {

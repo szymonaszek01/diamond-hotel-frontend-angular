@@ -6,12 +6,16 @@
 }
 
 .inner-header {
-  height: 65vh;
+  height: 70vh;
   width: 100%;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
+
+  @media (max-width: $breakpoint_first) {
+    height: 100vh;
+  }
 }
 
 .waves {

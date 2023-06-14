@@ -12,6 +12,9 @@ export class PrivateRoomTypeCardComponentComponent {
   @Input()
   public availableRoomType: AvailableRoomType = {} as AvailableRoomType;
 
+  @Input()
+  public readonly: boolean = true;
+
   @Output()
   public cardChanged = new EventEmitter<RoomTypeCardData>();
 

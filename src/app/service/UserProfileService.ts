@@ -37,6 +37,10 @@ export class UserProfileService {
     return this.http.get<UserProfileDto[]>(this.url + '/all/info');
   }
 
+  public deleteUserProfile(id: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/id/' + id + '/delete');
+  }
+
   public toUserProfileMapper(userProfileDto: UserProfileDto): UserProfile {
     return {
       id: userProfileDto.id,

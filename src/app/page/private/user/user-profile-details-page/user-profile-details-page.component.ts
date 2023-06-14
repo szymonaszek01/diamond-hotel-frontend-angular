@@ -15,6 +15,10 @@ export class UserProfileDetailsPageComponent {
 
   busy: boolean = false;
 
+  modal: boolean = false;
+
+  isAdminOnUserAccount: boolean = false;
+
   userProfileDetails: UserProfile = {} as UserProfile;
 
   errorDto: ErrorDto = {} as ErrorDto;
@@ -31,6 +35,7 @@ export class UserProfileDetailsPageComponent {
     let userProfileId: number = Number.parseInt(this.authService.getItem("id") ?? "0");
     this.activatedRoute.params.subscribe(params => {
       if (params["user-profile-id"] && this.authService.isAdmin()) {
+        this.isAdminOnUserAccount = true;
         userProfileId = params["user-profile-id"];
       }
     });
@@ -38,15 +43,20 @@ export class UserProfileDetailsPageComponent {
     this.getUserProfileDetails(userProfileId);
   }
 
-  private async getUserProfileDetails(userProfileId: number) {
-    this.userProfileService.getUserProfileDetailsInfo(userProfileId).subscribe(response => {
-      this.userProfileDetails = this.userProfileService.toUserProfileMapper(response);
-      this.errorDto.result = true;
-      this.busy = false;
-    }, () => {
-      this.errorDto.result = false;
-      this.errorDto.message = "User profile not found";
-      this.busy = false;
+  public onIconDeleteClick(): void {
+    this.modal = true;
+  }
+
+  public onModalResult(value: string): void {
+    this.modal = false;
+    if (value === 'No') {
+      return;
+    }
+
+    this.busy = true;
+    this.activatedRoute.params.subscribe(params => {
+      const userProfileId: number = params["user-profile-id"];
+      this.deleteUserProfile(userProfileId);
     });
   }
 
@@ -118,5 +128,29 @@ export class UserProfileDetailsPageComponent {
         visibility: true
       }
     ];
+  }
+
+  private async getUserProfileDetails(userProfileId: number) {
+    this.userProfileService.getUserProfileDetailsInfo(userProfileId).subscribe(response => {
+      this.userProfileDetails = this.userProfileService.toUserProfileMapper(response);
+      this.errorDto.result = true;
+      this.busy = false;
+    }, () => {
+      this.errorDto.result = false;
+      this.errorDto.message = "User profile not found";
+      this.busy = false;
+    });
+  }
+
+  private deleteUserProfile(userProfileId: number) {
+    this.userProfileService.deleteUserProfile(userProfileId).subscribe(() => {
+      this.authService.navigateByRole('/user-profile/all');
+      this.busy = false;
+      this.errorDto.result = true;
+    }, () => {
+      this.busy = false;
+      this.errorDto.result = false;
+      this.errorDto.message = "User profile not found";
+    });
   }
 }

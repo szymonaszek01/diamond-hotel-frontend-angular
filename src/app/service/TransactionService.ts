@@ -39,6 +39,9 @@ export class TransactionService {
           observer.next(stripeToken);
           observer.complete();
         },
+        closed: function () {
+          observer.error('Payment window closed without completing the payment');
+        }
       });
 
       paymentHandler.open({

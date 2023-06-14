@@ -15,6 +15,7 @@ import {CostDto} from "../dto/shopping-cart/CostDto";
 import {UserReservationDetailsInfoResponseDto} from "../dto/reservation/UserReservationDetailsInfoResponseDto";
 import {RoomType} from "../model/room-type/RoomType";
 import {RoomTypeOpinion} from "../model/room-type/RoomTypeOpinion";
+import {RoomTypeOfferDto} from "../dto/room-type/RoomTypeOfferDto";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class RoomTypeService {
   // private url = 'http://localhost:5432/api/v1/room-type';
 
   constructor(private http: HttpClient) {
+  }
+
+  public getRoomTypeInfoList(): Observable<RoomTypeOfferDto> {
+    return this.http.get<RoomTypeOfferDto>(this.url + '/all/info');
   }
 
   public getRoomTypeConfigurationInfo(): Observable<RoomTypeConfigurationResponseDto> {
