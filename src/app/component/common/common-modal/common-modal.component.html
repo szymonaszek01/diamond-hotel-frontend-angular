@@ -1,0 +1,18 @@
+<div [ngClass]="{'open' : this.active, 'close': !this.active}">
+  <label class="modal-bg"></label>
+  <div class="modal-content">
+    <label class="close">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </label>
+    <header>
+      <h2>{{this.title}}</h2>
+    </header>
+    <article class="content">
+      <p>{{this.body}}</p>
+    </article>
+    <footer>
+      <button class="btn btn-primary" type="button" (click)="this.onButtonYesClick()">Yes</button>
+      <button class="btn btn-primary" type="button" (click)="this.onButtonNoClick()">No</button>
+    </footer>
+  </div>
+</div>
